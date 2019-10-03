@@ -28,9 +28,28 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
+# admin dashboard
+gem 'administrate'
+
+# authentication
+gem 'clearance'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'rspec-rails'
+  gem 'rspec-example_steps'
+  gem 'capybara', '>= 3.14'
+  gem 'capybara-screenshot'
+  gem 'selenium-webdriver'
+  gem 'webdrivers', '~> 3.0'
+  gem 'rspec-wait'
+  gem 'spring-commands-rspec'
+
+  gem 'pry-rails'
+
+  gem 'rubocop'         
+  gem 'rubocop-performance'                                                   
 end
 
 group :development do
