@@ -61,4 +61,5 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
   Rails.configuration.darksky_api_key = ENV.fetch('DARKSKY_API_KEY', 'darksky_api_key')
+  Rails.configuration.locaton_iq_api_key = ENV.fetch('LOCATION_IQ_API_KEY', 'location_iq_api_key')
 end

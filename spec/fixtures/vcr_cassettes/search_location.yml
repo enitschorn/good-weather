@@ -1,0 +1,52 @@
+---
+http_interactions:
+  - request:
+      method: get
+      uri: https://locationiq.org/v1/search.php?format=json&key=location_iq_api_key&q=Melbourne+Australia
+      body:
+        encoding: US-ASCII
+        string: ""
+      headers:
+        User-Agent:
+          - Faraday v0.16.2
+    response:
+      status:
+        code: 200
+        message: OK
+      headers:
+        date:
+          - Sat, 05 Oct 2019 06:15:09 GMT
+        content-type:
+          - application/json; charset=UTF-8
+        transfer-encoding:
+          - chunked
+        connection:
+          - close
+        set-cookie:
+          - __cfduid=d887b4c61088bb63772c25c4f086ea71d1570256108; expires=Sun, 04-Oct-20
+            06:15:08 GMT; path=/; domain=.locationiq.org; HttpOnly
+        x-powered-by:
+          - LocationIQ
+        access-control-allow-origin:
+          - "*"
+        cf-cache-status:
+          - DYNAMIC
+        expect-ct:
+          - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+        server:
+          - cloudflare
+        cf-ray:
+          - 520d42682f93d187-HKG
+      body:
+        encoding: ASCII-8BIT
+        string:
+          '[{"place_id":"223205344","licence":"https:\/\/locationiq.com\/attribution","osm_type":"relation","osm_id":"2404870","boundingbox":["-37.85067","-37.77545","144.89709","144.9913426"],"lat":"-37.8142176","lon":"144.9631608","display_name":"City
+          of Melbourne, Victoria, Australia","class":"boundary","type":"administrative","importance":0.93312461007079,"icon":"https:\/\/locationiq.org\/static\/images\/mapicons\/poi_boundary_administrative.p.20.png"},{"place_id":"155185216","licence":"https:\/\/locationiq.com\/attribution","osm_type":"way","osm_id":"305804278","boundingbox":["-37.6788911","-37.6419602","144.8157357","144.8672036"],"lat":"-37.6538575","lon":"144.8426768","display_name":"Melbourne
+          Airport, Arrival Drive, Melbourne Airport, City of Hume, Victoria, 3045, Australia","class":"aeroway","type":"aerodrome","importance":0.64538498085989,"icon":"https:\/\/locationiq.org\/static\/images\/mapicons\/transport_airport2.p.20.png"},{"place_id":"223390537","licence":"https:\/\/locationiq.com\/attribution","osm_type":"relation","osm_id":"3898547","boundingbox":["-37.82962","-37.777786","144.9026859","144.9913426"],"lat":"-37.8042424","lon":"144.941123157645","display_name":"Melbourne
+          District, Argyle Place South, Carlton, City of Melbourne, Victoria, 3053,
+          Australia","class":"boundary","type":"political","importance":0.58195854389869},{"place_id":"52590858","licence":"https:\/\/locationiq.com\/attribution","osm_type":"node","osm_id":"4232045593","boundingbox":["-37.8696664","-37.8695664","144.9819093","144.9820093"],"lat":"-37.8696164","lon":"144.9819593","display_name":"Melbourne,
+          Smith Street, St Kilda, City of Port Phillip, Victoria, 3182, Australia","class":"tourism","type":"viewpoint","importance":0.221,"icon":"https:\/\/locationiq.org\/static\/images\/mapicons\/tourist_view_point.p.20.png"},{"place_id":"62835311","licence":"https:\/\/locationiq.com\/attribution","osm_type":"node","osm_id":"5318232045","boundingbox":["-37.784036","-37.783936","144.9521685","144.9522685"],"lat":"-37.783986","lon":"144.9522185","display_name":"zoo,
+          Poplar Road, Parkville, City of Melbourne, Victoria, 3052, Australia","class":"shop","type":"gift","importance":0.211}]'
+      http_version:
+    recorded_at: Sat, 05 Oct 2019 06:15:09 GMT
+recorded_with: VCR 5.0.0
