@@ -1,7 +1,8 @@
+# rubocop:disable Metrics/LineLength
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
-require File.expand_path('../../config/environment', __FILE__)
+require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
@@ -10,9 +11,9 @@ require 'rspec/rails'
 # used by other page_fragments
 require "support/features/page_fragments/util"
 
-Dir['spec/support/**/*.rb'].each do |file|           
-  require Rails.root.join(file).to_s                 
-end                                                  
+Dir['spec/support/**/*.rb'].each do |file|
+  require Rails.root.join(file).to_s
+end
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -70,10 +71,11 @@ RSpec.configure do |config|
   config.include PageFragments, type: :feature
 
   # setup VCR for HTTP integrations
-  VCR.configure do |config|
-    config.cassette_library_dir = "#{Rails.root}/spec/fixtures/vcr_cassettes"
-    config.hook_into :faraday
-    config.ignore_localhost = true
-    config.allow_http_connections_when_no_cassette = true
+  VCR.configure do |vcr_config|
+    vcr_config.cassette_library_dir = "#{Rails.root}/spec/fixtures/vcr_cassettes"
+    vcr_config.hook_into :faraday
+    vcr_config.ignore_localhost = true
+    vcr_config.allow_http_connections_when_no_cassette = true
   end
 end
+# rubocop:enable Metrics/LineLength
