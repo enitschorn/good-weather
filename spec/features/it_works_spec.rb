@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'it works' do
+feature 'it works', js: true do
     scenario 'I have rails' do
         When 'user visits the app' do
             visit root_path
