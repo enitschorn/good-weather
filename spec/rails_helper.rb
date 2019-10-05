@@ -68,4 +68,12 @@ RSpec.configure do |config|
 
   # include PageFragments in features
   config.include PageFragments, type: :feature
+
+  # setup VCR for HTTP integrations
+  VCR.configure do |config|
+    config.cassette_library_dir = "#{Rails.root}/spec/fixtures/vcr_cassettes"
+    config.hook_into :faraday
+    config.ignore_localhost = true
+    config.allow_http_connections_when_no_cassette = true
+  end
 end
