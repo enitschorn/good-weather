@@ -7,7 +7,8 @@ module LocationIq
             '/v1/search.php',
             {
               key: Rails.configuration.locaton_iq_api_key,
-              q: query,
+              city: query,
+              state: 'Victoria',
               format: 'json'
             }.to_query
           ].join('?')
@@ -20,3 +21,4 @@ module LocationIq
     end
   end
 end
+

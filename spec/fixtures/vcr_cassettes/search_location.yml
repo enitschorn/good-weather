@@ -2,7 +2,7 @@
 http_interactions:
   - request:
       method: get
-      uri: https://locationiq.org/v1/search.php?format=json&key=location_iq_api_key&q=Melbourne+Australia
+      uri: https://locationiq.org/v1/search.php?city=Melbourne&format=json&key=location_iq_api_key&state=Victoria
       body:
         encoding: US-ASCII
         string: ""
