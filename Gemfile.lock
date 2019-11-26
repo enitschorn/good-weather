@@ -275,6 +275,8 @@ GEM
       rack (>= 2.0.0)
       rack-protection (>= 2.0.0)
       redis (>= 4.1.0)
+    sidekiq-failures (1.0.0)
+      sidekiq (>= 4.0.0)
     spring (2.1.0)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
@@ -335,6 +337,7 @@ DEPENDENCIES
   pry-rails
   puma (~> 3.11)
   rails (~> 6.0.0)
+  redis (~> 4.0)
   rspec-example_steps
   rspec-rails
   rspec-wait
@@ -343,6 +346,7 @@ DEPENDENCIES
   sass-rails (~> 5)
   selenium-webdriver
   sidekiq
+  sidekiq-failures (~> 1.0)
   spring
   spring-commands-rspec
   spring-watcher-listen (~> 2.0.0)

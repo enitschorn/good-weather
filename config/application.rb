@@ -33,5 +33,7 @@ module GoodWeather
     config.generators.system_tests = nil
 
     config.autoload_paths += %W(#{config.root}/app/services)
+
+    config.active_job.queue_adapter = Rails.env.production? ? :sidekiq : :async
   end
 end
