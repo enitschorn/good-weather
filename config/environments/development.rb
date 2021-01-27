@@ -60,6 +60,6 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  Rails.configuration.darksky_api_key = ENV.fetch("DARKSKY_API_KEY", "darksky_api_key")
-  Rails.configuration.locaton_iq_api_key = ENV.fetch("LOCATION_IQ_API_KEY", "location_iq_api_key")
+  Rails.configuration.darksky_api_key = Rails.application.credentials.darksky[:api_key]
+  Rails.configuration.locaton_iq_api_key = Rails.application.credentials.location_iq[:api_key]
 end

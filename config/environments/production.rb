@@ -110,6 +110,6 @@ Rails.application.configure do
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 
-  Rails.configuration.darksky_api_key = ENV.fetch("DARKSKY_API_KEY")
-  Rails.configuration.locaton_iq_api_key = ENV.fetch("LOCATION_IQ_API_KEY")
+  Rails.configuration.darksky_api_key = Rails.application.credentials.darksky[:api_key]
+  Rails.configuration.locaton_iq_api_key = Rails.application.credentials.location_iq[:api_key]
 end

@@ -46,6 +46,6 @@ Rails.application.configure do
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
 
-  Rails.configuration.darksky_api_key = ENV.fetch("DARKSKY_API_KEY", "darksky_api_key")
-  Rails.configuration.locaton_iq_api_key = ENV.fetch("LOCATION_IQ_API_KEY", "location_iq_api_key")
+  Rails.configuration.darksky_api_key = "darksky_api_key"
+  Rails.configuration.locaton_iq_api_key = "location_iq_api_key"
 end
