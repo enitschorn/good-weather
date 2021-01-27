@@ -177,7 +177,8 @@ GEM
     pry-rails (0.3.9)
       pry (>= 0.10.4)
     public_suffix (4.0.6)
-    puma (3.12.1)
+    puma (5.2.0)
+      nio4r (~> 2.0)
     racc (1.5.2)
     rack (2.2.3)
     rack-protection (2.0.7)
@@ -214,8 +215,8 @@ GEM
       thor (~> 1.0)
     rainbow (3.0.0)
     rake (13.0.3)
-    rb-fsevent (0.10.3)
-    rb-inotify (0.10.0)
+    rb-fsevent (0.10.4)
+    rb-inotify (0.10.1)
       ffi (~> 1.0)
     redis (4.1.3)
     regexp_parser (2.0.3)
@@ -265,17 +266,8 @@ GEM
     ruby-progressbar (1.10.1)
     ruby_dep (1.5.0)
     rubyzip (1.3.0)
-    sass (3.7.4)
-      sass-listen (~> 4.0.0)
-    sass-listen (4.0.0)
-      rb-fsevent (~> 0.9, >= 0.9.4)
-      rb-inotify (~> 0.9, >= 0.9.7)
-    sass-rails (5.1.0)
-      railties (>= 5.2.0)
-      sass (~> 3.1)
-      sprockets (>= 2.8, < 4.0)
-      sprockets-rails (>= 2.0, < 4.0)
-      tilt (>= 1.1, < 3)
+    sass-rails (6.0.0)
+      sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -288,6 +280,7 @@ GEM
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
+    semantic_range (2.3.1)
     sidekiq (6.0.3)
       connection_pool (>= 2.2.2)
       rack (>= 2.0.0)
@@ -317,7 +310,7 @@ GEM
     vcr (5.0.0)
     warden (1.2.9)
       rack (>= 2.0.9)
-    web-console (4.0.1)
+    web-console (4.1.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
@@ -326,10 +319,11 @@ GEM
       nokogiri (~> 1.6)
       rubyzip (~> 1.0)
       selenium-webdriver (~> 3.0)
-    webpacker (4.0.7)
-      activesupport (>= 4.2)
+    webpacker (5.2.1)
+      activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
-      railties (>= 4.2)
+      railties (>= 5.2)
+      semantic_range (>= 2.3.0)
     websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -343,7 +337,7 @@ PLATFORMS
 DEPENDENCIES
   administrate
   administrate-field-jsonb
-  bootsnap (>= 1.4.2)
+  bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.14)
   capybara-screenshot
@@ -354,7 +348,7 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   pg (>= 0.18, < 2.0)
   pry-rails
-  puma (~> 3.11)
+  puma (~> 5.0)
   rails (~> 6.1.1)
   rspec-example_steps
   rspec-rails
@@ -363,7 +357,7 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rails
   rubocop-rspec
-  sass-rails (~> 5)
+  sass-rails (>= 6)
   selenium-webdriver
   sidekiq
   spring
@@ -372,9 +366,9 @@ DEPENDENCIES
   turbolinks (~> 5)
   tzinfo-data
   vcr
-  web-console (>= 3.3.0)
+  web-console (>= 4.1.0)
   webdrivers (~> 3.0)
-  webpacker (~> 4.0)
+  webpacker (~> 5.0)
 
 RUBY VERSION
    ruby 2.7.1p83
