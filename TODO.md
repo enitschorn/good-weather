@@ -3,14 +3,12 @@
 - [ ] basic tests running
   - [ ] on circle ci
   - [x] rubocop
-  - [ ] lint
+  - [x] lint
   - [x] capybara
 - [ ] user model and devise
 - [ ] admin priveleges
 - [ ] email and email framework
 - [ ] administrate or similar for backend pages
-- [ ] bootstrap
-- [ ] linting
 - [ ] react
 - [ ] data some POI
 - [ ] map
@@ -62,6 +60,7 @@
 
 ## Done
 
+- [x] bootstrap
 - [x] setup pg crypto use UUID
 - [x] update Rails 6.1.1 and ruby 2.7.1
 
