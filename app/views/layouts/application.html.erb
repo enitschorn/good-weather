@@ -11,6 +11,9 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= flash_messages %>
+    <main class="container-fluid">
+      <%= yield %>
+    </main>
   </body>
 </html>

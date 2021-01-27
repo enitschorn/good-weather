@@ -32,7 +32,7 @@ gem "bootsnap", ">= 1.4.2", require: false
 gem "administrate"
 
 # authentication
-gem "clearance"
+gem "devise"
 
 # api fetching
 gem "faraday"
@@ -64,6 +64,9 @@ group :development, :test do
   gem "rubocop"
   gem "rubocop-rails"
   gem "rubocop-rspec"
+ 
+  # allow viewing emails in development
+  gem "letter_opener"
 end
 
 group :development do
