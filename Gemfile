@@ -30,6 +30,7 @@ gem "bootsnap", ">= 1.4.2", require: false
 
 # admin dashboard
 gem "administrate"
+gem "administrate-field-jsonb"
 
 # authentication
 gem "devise"
@@ -64,7 +65,7 @@ group :development, :test do
   gem "rubocop"
   gem "rubocop-rails"
   gem "rubocop-rspec"
- 
+
   # allow viewing emails in development
   gem "letter_opener"
 end
