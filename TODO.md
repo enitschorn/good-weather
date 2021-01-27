@@ -1,6 +1,10 @@
 # TODO
 
 - [ ] basic tests running
+  - [ ] on circle ci
+  - [x] rubocop
+  - [ ] lint
+  - [x] capybara
 - [ ] user model and devise
 - [ ] admin priveleges
 - [ ] email and email framework

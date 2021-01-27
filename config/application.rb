@@ -1,4 +1,4 @@
-require_relative 'boot'
+require_relative "boot"
 
 require "rails"
 # Pick the frameworks you want:
@@ -32,7 +32,7 @@ module GoodWeather
     # Don't generate system test files.
     config.generators.system_tests = nil
 
-    config.autoload_paths += %W(#{config.root}/app/services)
+    config.autoload_paths += %W[#{config.root}/app/services]
 
     config.generators do |g|
       g.orm :active_record, primary_key_type: :uuid

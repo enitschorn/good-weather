@@ -4,14 +4,14 @@ module LocationIq
       def search(query:)
         api.get(
           [
-            '/v1/search.php',
+            "/v1/search.php",
             {
               key: Rails.configuration.locaton_iq_api_key,
               city: query,
-              state: 'Victoria',
-              format: 'json'
-            }.to_query
-          ].join('?')
+              state: "Victoria",
+              format: "json",
+            }.to_query,
+          ].join("?"),
         )
       end
 
@@ -21,4 +21,3 @@ module LocationIq
     end
   end
 end
-

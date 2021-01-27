@@ -1,18 +1,18 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe Darksky::Forecast do
   let(:melbourne_lat) { -37.8142176 }
   let(:melbourne_long) { 144.9631608 }
 
-  it 'fetches weather for upcoming weekend' do
+  it "fetches weather for upcoming weekend" do
     VCR.use_cassette("forecast") do
       melbourne_weather = Darksky::Forecast
                           .fetch(
                             lat: melbourne_lat,
-                            long: melbourne_long
+                            long: melbourne_long,
                           )
       expect(
-        melbourne_weather.weather_summary
+        melbourne_weather.weather_summary,
       ).to eq <<~FORECAST_OUTPUT.strip_heredoc.chomp
         Sat  5 Oct | 22 | partly-cloudy-day
         Sun  6 Oct | 24 | partly-cloudy-day

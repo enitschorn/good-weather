@@ -1,45 +1,45 @@
-require: rubocop-performance
+inherit_from: .rubocop_todo.yml
 
 AllCops:
   Exclude:
-    - Gemfile
+    - node_modules/**/*
+    - vendor/**/*
     - bin/update
     - bin/rake
     - bin/setup
     - bin/yarn
     - bin/spring
     - bin/rails
-    - bin/rspec
     - bin/bundle
-    - bin/webpack-dev-server
-    - bin/webpack
-    - config/application.rb
-    - config/environments/production.rb
-    - config/environments/development.rb
-    - config/environments/test.rb
-    - config/spring.rb
-    - config/puma.rb
     - db/seeds.rb
     - db/schema.rb
-    - node_modules/**/*
-    - vendor/**/*
+    - db/migrate/*
+
+Metrics/LineLength:
+  Exclude:
+    - config/**/*
+    - features/support/env.rb
+
+Metrics/MethodLength:
+  Enabled: false
 
 Metrics/BlockLength:
   Enabled: false
-
-Metrics/LineLength:
-  Max: 75
-  Exclude:
-    - config/**/*
 
 Style/Documentation:
   Enabled: false
 
 Style/FrozenStringLiteralComment:
-  Enabled: false
+  EnforcedStyle: never
 
-Style/IfUnlessModifier:
-  Enabled: false
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: consistent_comma
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: consistent_comma
 
 Style/StringLiterals:
-  Enabled: false
+  EnforcedStyle: double_quotes

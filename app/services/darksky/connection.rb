@@ -1,8 +1,8 @@
-require 'faraday'
+require "faraday"
 
 module Darksky
   class Connection
-    BASE = 'https://api.darksky.net'.freeze
+    BASE = "https://api.darksky.net".freeze
 
     def self.api
       Faraday.new(url: BASE) do |faraday|

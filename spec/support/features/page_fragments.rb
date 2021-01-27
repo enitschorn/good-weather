@@ -11,11 +11,11 @@ module PageFragments
   end
 
   def classify(string)
-    string.to_s.split('_').map(&:capitalize).join
+    string.to_s.split("_").map(&:capitalize).join
   end
 
   def focus_on(*args)
-    require File.join(__dir__, 'page_fragments', args.map(&:to_s))
+    require File.join(__dir__, "page_fragments", args.map(&:to_s))
     mod = args.inject(PageFragments) do |klass, sub_klass|
       klass.const_get(classify(sub_klass))
     end

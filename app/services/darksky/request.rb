@@ -5,7 +5,7 @@ module Darksky
         api.get(
           ["forecast",
            Rails.configuration.darksky_api_key,
-           "#{lat},#{long}?units=si"].join('/')
+           "#{lat},#{long}?units=si",].join("/"),
         )
       end
 

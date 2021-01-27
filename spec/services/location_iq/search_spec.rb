@@ -1,7 +1,7 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe LocationIq::Search do
-  it 'searches for location by name' do
+  it "searches for location by name" do
     VCR.use_cassette("search_location") do
       melbourne_location = LocationIq::Search
                            .fetch(query: "Melbourne")

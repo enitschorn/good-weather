@@ -28,7 +28,6 @@ module PageFragments
       key_value("dl dt", "dl dd")
     end
 
-    # rubocop:disable Metrics/MethodLength
     def add_slide(args = {})
       form_action("Slides")
       form_action("New slide")
@@ -39,11 +38,9 @@ module PageFragments
       end
       form_action(
         "Create Slide",
-        args.reject { |label, _value| label.to_sym == :Slideshow }
+        args.reject { |label, _value| label.to_sym == :Slideshow },
       )
     end
-
-    # rubocop:enable Metrics/MethodLength
 
     def go_to_slideshow(title)
       form_action("Slideshows")

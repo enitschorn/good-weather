@@ -22,7 +22,7 @@ module Darksky
         [
           Time.at(day["time"]).to_date.strftime("%a %e %b"),
           day["temperatureHigh"].round,
-          day["icon"]
+          day["icon"],
         ]
       end
     end
@@ -42,7 +42,7 @@ module Darksky
         line.each_with_index do |field, index|
           counts[index] = [
             (counts[index] || 0),
-            field.to_s.chars.length
+            field.to_s.chars.length,
           ].max
         end
       end

@@ -1,8 +1,8 @@
-require 'faraday'
+require "faraday"
 
 module LocationIq
   class Connection
-    BASE = 'https://locationiq.org'.freeze
+    BASE = "https://locationiq.org".freeze
 
     def self.api
       Faraday.new(url: BASE) do |faraday|
