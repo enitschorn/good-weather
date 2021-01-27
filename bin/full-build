@@ -2,18 +2,13 @@
 
 set -e
 
-# linting, and general pretty code
-if [[ ${PRETTY_CODE} = "false" ]]
-then
-  # DO NOTHING if you choose to opt out of linting
-  echo 'NOT checking for pretty code'
-else
-  bundle exec rubocop
-  # yarn lint
-fi
+bundle install
+yarn
 
-RAILS_ENV=test bundle exec rails db:drop db:create db:migrate db:seed
-bundle exec rspec -f documentation
-
+# yarn lint
 # yarn jest
 
+bundle exec rubocop
+
+RAILS_ENV=test bundle exec rails db:create db:migrate db:seed
+bundle exec rspec
