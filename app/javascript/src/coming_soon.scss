@@ -1,0 +1,78 @@
+.overlay {
+  position: absolute;
+  min-height: 100%;
+  min-width: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(244, 244, 244, 0.79);
+}
+
+.header {
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+.description {
+  position: absolute;
+  margin: auto;
+  padding: 2em;
+  p {
+    color: #666;
+    font-size: 20px;
+    line-height: 1.5;
+  }
+}
+
+.coming-soon {
+  margin-left: -15px;
+  margin-right: -15px;
+
+  .bgimg {
+    /* Background image */
+    background-image: url("https://trello-attachments.s3.amazonaws.com/60110779e67a0668756040cd/1200x675/67b783dfc68c8ecce33a1939574751a0/pexels-johannes-plenio-1118873_1200.jpg");
+    /* Full-screen */
+    height: 100%;
+    /* Center the background image */
+    background-position: center;
+    /* Scale and zoom in the image */
+    background-size: cover;
+    /* Add position: relative to enable absolutely positioned elements inside the image (place text) */
+    position: relative;
+    /* Add a white text color to all elements inside the .bgimg container */
+    color: white;
+    /* Add a font */
+    font-family: "Courier New", Courier, monospace;
+    /* Set the font-size to 25 pixels */
+    font-size: 25px;
+  }
+
+  /* Position text in the top-left corner */
+  .topleft {
+    position: absolute;
+    top: 0;
+    left: 16px;
+  }
+
+  /* Position text in the bottom-left corner */
+  .bottomleft {
+    position: absolute;
+    bottom: 0;
+    left: 16px;
+  }
+
+  /* Position text in the middle */
+  .middle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+
+  /* Style the <hr> element */
+  hr {
+    margin: auto;
+    width: 40%;
+  }
+}
