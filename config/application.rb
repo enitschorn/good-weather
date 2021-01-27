@@ -33,5 +33,9 @@ module GoodWeather
     config.generators.system_tests = nil
 
     config.autoload_paths += %W(#{config.root}/app/services)
+
+    config.generators do |g|
+      g.orm :active_record, primary_key_type: :uuid
+    end
   end
 end

@@ -1,6 +1,5 @@
 # TODO
 
-- [ ] setup pg crypto
 - [ ] basic tests running
 - [ ] user model and devise
 - [ ] admin priveleges
@@ -59,5 +58,6 @@
 
 ## Done
 
+- [x] setup pg crypto use UUID
 - [x] update Rails 6.1.1 and ruby 2.7.1
 
