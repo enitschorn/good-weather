@@ -32,6 +32,10 @@ module GoodWeather
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
 
+    config.to_prepare do
+      Devise::Mailer.layout "mailer"
+    end
+
     config.generators do |g|
       g.orm :active_record, primary_key_type: :uuid
     end

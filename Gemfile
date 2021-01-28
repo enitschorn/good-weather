@@ -38,6 +38,12 @@ gem "devise"
 # api fetching
 gem "faraday"
 
+# Email sending on heroku
+gem "sendgrid-ruby"
+
+# email style inlining
+gem "premailer-rails"
+
 # background jobs
 gem "sidekiq"
 

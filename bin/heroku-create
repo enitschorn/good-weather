@@ -16,8 +16,8 @@ heroku buildpacks
 heroku buildpacks:remove heroku/ruby || echo "ruby buildpack already removed"
 heroku buildpacks:add --index 1 heroku/ruby
 
-# echo "Adding heroku-sendgrid addon (unless it already exists)"
-# (heroku addons | grep sendgrid) || heroku addons:create sendgrid:starter
+echo "Adding heroku-sendgrid addon (unless it already exists)"
+(heroku addons | grep sendgrid) || heroku addons:create sendgrid:starter
 
 # changing db scale will NOT automatically scale heroku - this requires clickops
 #echo "Adding heroku-postgres addon (unless it already exists)"

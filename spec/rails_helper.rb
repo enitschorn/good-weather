@@ -72,6 +72,10 @@ RSpec.configure do |config|
   # include PageFragments in features
   config.include PageFragments, type: :feature
 
+  # predictable host and port for email links
+  Capybara.server_port = 3001
+  Capybara.server_host = "localhost"
+
   # setup VCR for HTTP integrations
   VCR.configure do |vcr_config|
     vcr_config.cassette_library_dir = "#{Rails.root}/spec/fixtures/vcr_cassettes"

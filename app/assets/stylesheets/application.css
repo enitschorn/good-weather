@@ -10,6 +10,9 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ * TODO: below is requiring mailers so that email is styled but should be *= stub mailers to ignore them
+ *   as mailers interferes with standard styling of the site
  *= require_tree .
  *= require_self
+ *= mailers
  */
