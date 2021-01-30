@@ -23,32 +23,32 @@ class LocationDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
-  id
-  name
-  latitude
-  longitude
+    id
+    name
+    latitude
+    longitude
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
-  id
-  name
-  latitude
-  longitude
-  is_fetching_forecast
-  created_at
-  updated_at
+    id
+    name
+    latitude
+    longitude
+    is_fetching_forecast
+    created_at
+    updated_at
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
-  name
-  latitude
-  longitude
-  is_fetching_forecast
+    name
+    latitude
+    longitude
+    is_fetching_forecast
   ].freeze
 
   # COLLECTION_FILTERS
