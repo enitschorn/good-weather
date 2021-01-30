@@ -1,4 +1,3 @@
-# rubocop:disable Metrics/LineLength
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require "spec_helper"
 ENV["RAILS_ENV"] ||= "test"
@@ -84,4 +83,3 @@ RSpec.configure do |config|
     vcr_config.allow_http_connections_when_no_cassette = true
   end
 end
-# rubocop:enable Metrics/LineLength

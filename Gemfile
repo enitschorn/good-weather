@@ -61,16 +61,14 @@ group :development, :test do
 
   gem "pry-rails"
 
+  # Adding for consistent Ruby styling
   gem "rubocop"
   gem "rubocop-performance"
+  gem "rubocop-rails"
+  gem "rubocop-rspec"
 
   # recorded HTTP integrations
   gem "vcr"
-
-  # Adding for consistent Ruby styling
-  gem "rubocop"
-  gem "rubocop-rails"
-  gem "rubocop-rspec"
 
   # allow viewing emails in development
   gem "letter_opener"

@@ -14,8 +14,9 @@ AllCops:
     - db/seeds.rb
     - db/schema.rb
     - db/migrate/*
+  NewCops: enable
 
-Metrics/LineLength:
+Layout/LineLength:
   Exclude:
     - config/**/*
     - features/support/env.rb
