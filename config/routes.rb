@@ -12,5 +12,8 @@ Rails.application.routes.draw do
 
   get "test_root", to: "rails/welcome#index", as: "test_root_rails"
 
+  get "/search" => "search#index"
+  get "/search/*all" => "search#index"
+
   root to: "home#index"
 end
