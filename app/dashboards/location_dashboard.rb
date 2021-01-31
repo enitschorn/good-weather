@@ -27,6 +27,7 @@ class LocationDashboard < Administrate::BaseDashboard
     name
     latitude
     longitude
+    is_fetching_forecast
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES

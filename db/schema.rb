@@ -10,11 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_30_220935) do
+ActiveRecord::Schema.define(version: 2021_01_31_000000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "forecasts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "location_forecast_id", null: false
+    t.date "date", null: false
+    t.time "time"
+    t.string "summary", null: false
+    t.decimal "temperature_low", null: false
+    t.decimal "temperature_high", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["location_forecast_id"], name: "index_forecasts_on_location_forecast_id"
+  end
+
+  create_table "location_forecasts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "location_id", null: false
+    t.date "date"
+    t.index ["location_id", "date"], name: "index_location_forecasts_on_location_id_and_date", unique: true
+    t.index ["location_id"], name: "index_location_forecasts_on_location_id"
+  end
 
   create_table "locations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
@@ -48,4 +67,6 @@ ActiveRecord::Schema.define(version: 2021_01_30_220935) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "forecasts", "location_forecasts"
+  add_foreign_key "location_forecasts", "locations"
 end

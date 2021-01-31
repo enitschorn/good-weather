@@ -1,6 +1,6 @@
 module LocationIq
   class Search < Base
-    attr_accessor :raw_response, :lat, :long
+    attr_accessor :raw_response, :lat, :long, :latitude, :longitude
 
     class << self
       def fetch(query:)
@@ -11,8 +11,10 @@ module LocationIq
 
     def initialize(args)
       super(args)
-      @lat = raw_response.first["lat"].to_f
-      @long = raw_response.first["lon"].to_f
+      @latitude = raw_response.first["lat"].to_f
+      @longitude = raw_response.first["lon"].to_f
+      @lat = @latitude
+      @long = @longitude
     end
   end
 end

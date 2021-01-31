@@ -1,3 +1,52 @@
+<h1 align="center">Good Weather</h1>
+
+<div align="center">
+
+[![CircleCI](https://circleci.com/gh/enitschorn/good-weather.svg?style=svg)](https://circleci.com/gh/enitschorn/good-weather)
+
+</div>
+
+It's always good weather for somethign
+
+# TL;DR
+
+```
+asdf install
+npm install -g https://yarnpkg.com/downloads/1.22.5/yarn-v1.22.5.tar.gz
+
+bundle exec rails db:create && db:migrate
+
+make build
+
+rails server
+open http://localhost:3000
+
+bin/webpack-dev-server
+
+# create a user m@m.m
+open http://localhost:3000/admin
+# confirm email
+
+# make an adminstrator
+rails 'user:make_admin[m@m.m]'
+
+# input some locations
+open http://localhost:3000/admin/locations
+
+# view them
+http://localhost:3000/search
+
+# geocode them
+rails location:enrich_lat_lng
+
+# set some locations to have is `fetching forecast` TRUE
+# fetch forecast
+rails forecast:locations
+
+# view them coming next ...
+http://localhost:3000/forecasts
+```
+
 # README
 
 This README would normally document whatever steps are necessary to get the

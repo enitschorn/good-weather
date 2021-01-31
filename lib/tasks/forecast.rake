@@ -23,3 +23,70 @@ task forecasts_by_city: :environment do
   end
   puts output
 end
+
+namespace :location do
+  desc "Enrich locations with latitude and longitude if 0/0"
+  # bin/rails location:enrich_lat_lng
+  task enrich_lat_lng: :environment do
+    Location
+      .where(latitude: 0, longitude: 0)
+      .each do |location|
+        location_iq = LocationIq::Search.fetch(query: location.name)
+        next unless location_iq
+
+        location.update!(
+          latitude: location_iq.latitude,
+          longitude: location_iq.longitude,
+        )
+      end
+  end
+end
+
+namespace :forecast do
+  desc "fetch forecast for all locations"
+  # run to fetch forecast for all locations
+  #   bin/rails forecast:locations
+  task locations: :environment do
+    Location
+      .where(
+        Location.arel_table[:latitude].eq(0).not
+        .or(
+          Location.arel_table[:longitude].eq(0).not,
+        ),
+      )
+      .where(is_fetching_forecast: true)
+      .each do |location|
+        location_forecast = Darksky::Forecast.fetch(
+          lat: location.latitude, long: location.longitude,
+        )
+        location_forecast.raw_response["daily"]["data"].map do |h|
+          [Time.at(h["time"]).to_date, h["temperatureLow"], h["temperatureHigh"], h["summary"]]
+        end
+        fetch_time = Time.at(
+          location_forecast
+            .raw_response
+            .dig("currently", "time"),
+        )
+        fetch_timezone = location_forecast
+                         .raw_response
+                         .dig("currently", "timezone")
+        fetch_time.in_time_zone(fetch_timezone)
+        location_forecast
+          .raw_response.dig("daily", "data")
+          .each do |daily_data|
+            forecast_date = Time.at(daily_data["time"]).to_date
+            location_forecast = location
+                                .location_forecasts
+                                .find_or_create_by(date: forecast_date)
+            location_forecast
+              .forecasts
+              .create!(
+                date: forecast_date,
+                temperature_low: daily_data["temperatureLow"],
+                temperature_high: daily_data["temperatureHigh"],
+                summary: daily_data["summary"],
+              )
+          end
+      end
+  end
+end
