@@ -10,5 +10,13 @@ module Types
     field :locations,
           resolver: Resolvers::Locations,
           description: "Find locations by location name"
+
+    field :forecast_dates,
+          resolver: Resolvers::ForecastDates,
+          description: "Find forecast date"
+
+    field :forecasts,
+          resolver: Resolvers::Forecasts,
+          description: "Find forecasts for a date range"
   end
 end

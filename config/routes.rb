@@ -12,6 +12,10 @@ Rails.application.routes.draw do
 
   get "test_root", to: "rails/welcome#index", as: "test_root_rails"
 
+  resource :forecast, only: %i[index]
+
+  get "/forecast" => "forecast#index"
+
   get "/search" => "search#index"
   get "/search/*all" => "search#index"
 
