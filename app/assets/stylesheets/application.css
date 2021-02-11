@@ -14,5 +14,5 @@
  *   as mailers interferes with standard styling of the site
  *= require_tree .
  *= require_self
- *= mailers
+ *= stub mailers
  */
