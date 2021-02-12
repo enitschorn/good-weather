@@ -11,8 +11,9 @@
   </head>
 
   <body>
-    <%= flash_messages %>
+    <%= render partial: 'layouts/navbar' %>
     <main class="container-fluid">
+      <%= flash_messages %>
       <%= yield %>
     </main>
   </body>
