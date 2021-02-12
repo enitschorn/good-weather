@@ -1,18 +1,9 @@
 # TODO
 
-- [ ] basic tests running
-  - [ ] on circle ci
-  - [x] rubocop
-  - [x] lint
-  - [x] capybara
-- [ ] user model and devise
-- [ ] admin priveleges
-- [ ] email and email framework
-- [ ] administrate or similar for backend pages
-- [ ] react
 - [ ] data some POI
-- [ ] map
 - [ ] weather data job
+- [ ] annoyances
+  - [ ] sign in should take you to homepage? only to admin if you can admin
 - [ ] landing page
   - https://medium.com/@LoganTjm/9-tactics-of-pre-launch-app-landing-pages-that-get-thousands-of-signups-477905a0ed22
     - market 2-3 months before launch to get a pre-launch database
@@ -60,6 +51,17 @@
 
 ## Done
 
+- [x] basic tests running
+  - [x] on circle ci
+  - [x] rubocop
+  - [x] lint
+  - [x] capybara
+- [x] user model and devise
+- [x] admin priveleges
+- [x] administrate or similar for backend pages
+- [x] react
+- [x] map
+- [x] email and email framework
 - [x] bootstrap
 - [x] setup pg crypto use UUID
 - [x] update Rails 6.1.1 and ruby 2.7.1

@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
+import { any } from 'prop-types';
 import { ApolloProvider } from 'react-apollo';
 import ApolloClient from '../../api/ApolloClient';
 
 import ForecastList from './ForecastList';
+import ForecastMap from './ForecastMap';
 import ForecastSelector from './ForecastSelector';
 
-export default function Forecast() {
+export default function Forecast({ options: { googleApiKey } }) {
   const [dates, setDates] = useState([]);
 
   const dateSelected = (date) => dates.filter((fDate) => fDate.date === date).length !== 0;
@@ -20,15 +22,25 @@ export default function Forecast() {
   return (
     <ApolloProvider client={ApolloClient}>
       <div className="row">
-        <div className="col-sm-1" />
-        <div className="col-sm-10">
+        <div className="col">
           <ForecastSelector
             dateSelected={dateSelected}
             toggleDate={toggleDate}
           />
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-sm-6">
           <ForecastList dates={dates} />
+        </div>
+        <div className="col-sm-6">
+          <ForecastMap dates={dates} mapKey={googleApiKey} />
         </div>
       </div>
     </ApolloProvider>
   );
 }
+
+Forecast.propTypes = {
+  options: any.isRequired,
+};

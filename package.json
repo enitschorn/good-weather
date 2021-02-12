@@ -17,6 +17,7 @@
     "apollo-link-http": "^1.5.17",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "bootstrap": "^4.6.0",
+    "google-map-react": "^2.1.9",
     "graphql": "^15.5.0",
     "jquery": "^3.5.1",
     "lint": "^0.7.0",

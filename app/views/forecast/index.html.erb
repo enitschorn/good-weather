@@ -2,6 +2,6 @@
   :div,
   nil,
   class: "forecast",
-  data: {}
+  data: { options: { googleApiKey: Rails.application.credentials.google[:api_key] }}
 ) %>
 <%= javascript_pack_tag "forecast" %>

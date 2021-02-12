@@ -9,6 +9,8 @@ const FORECAST_DATES = gql`
   query ForecastDates {
     forecastDates {
       date
+      displayDate
+      isWeekend
     }
   }
 `;
@@ -20,17 +22,20 @@ export default function ForecastSelector({ dateSelected, toggleDate }) {
         if (loading) return 'loading ...';
         if (error) return `Error! ${error.message}`;
         return (
-          <div className="row">
-            <div className="col-sm-2" />
-            <div className="col-sm-8">
-              {data.forecastDates.map(({ date }) => (
-                <ForecastSelectorDate
-                  key={date}
-                  dateSelected={dateSelected}
-                  toggleDate={toggleDate}
-                  date={date}
-                />
-              ))}
+          <div className="container my-2">
+            <div className="row">
+              <div className="col">
+                {data.forecastDates.map(({ date, displayDate, isWeekend }) => (
+                  <ForecastSelectorDate
+                    key={date}
+                    dateSelected={dateSelected}
+                    toggleDate={toggleDate}
+                    date={date}
+                    displayDate={displayDate}
+                    isWeekend={isWeekend}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         );

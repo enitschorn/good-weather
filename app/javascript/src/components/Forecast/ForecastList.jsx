@@ -32,8 +32,7 @@ export default function ForecastList({ dates }) {
         if (data.forecasts.length === 0) {
           return (
             <div className="row">
-              <div className="col-sm-2" />
-              <div className="col-sm-2">
+              <div className="col">
                 <div>select dates above ...</div>
               </div>
             </div>

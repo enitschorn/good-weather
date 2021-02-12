@@ -9,12 +9,11 @@ export default function ForecastListItem({
   temperatureHigh,
 }) {
   return (
-    <div className="row">
-      <div className="col-sm-2" />
-      <div className="col-sm-2">{name}</div>
-      <div className="col-sm-2">{date}</div>
-      <div className="col-sm-2">{summary}</div>
-      <div className="col-sm-2 text-right">{`${temperatureLow} - ${temperatureHigh}`}</div>
+    <div className="card">
+      <h3>{name}</h3>
+      <div>{date}</div>
+      <div>{summary}</div>
+      <div>{`${temperatureLow} - ${temperatureHigh}`}</div>
     </div>
   );
 }
