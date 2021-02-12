@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_31_000000) do
+ActiveRecord::Schema.define(version: 2021_02_12_000000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 2021_01_31_000000) do
     t.decimal "temperature_high", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.jsonb "daily_data"
+    t.jsonb "hourly_data"
     t.index ["location_forecast_id"], name: "index_forecasts_on_location_forecast_id"
   end
 

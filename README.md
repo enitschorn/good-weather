@@ -47,6 +47,24 @@ rails forecast:locations
 http://localhost:3000/forecasts
 ```
 
+* get a copy of the DB from production
+
+```
+heroku pg:backups:capture
+heroku pg:backups:download
+
+pg_restore \
+  --verbose \
+  --clean \
+  --no-acl \
+  --no-owner \
+  -h localhost \
+  -d good_weather_development \
+  latest.dump
+
+rm latest.dump
+```
+
 # README
 
 This README would normally document whatever steps are necessary to get the

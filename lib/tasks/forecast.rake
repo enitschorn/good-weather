@@ -56,28 +56,32 @@ namespace :forecast do
       )
       .where(is_fetching_forecast: true)
       .each do |location|
-        location_forecast = Darksky::Forecast.fetch(
+        darksky_location_forecast = Darksky::Forecast.fetch(
           lat: location.latitude, long: location.longitude,
         )
-        location_forecast.raw_response["daily"]["data"].map do |h|
+        darksky_location_forecast.raw_response["daily"]["data"].map do |h|
           [Time.at(h["time"]).to_date, h["temperatureLow"], h["temperatureHigh"], h["summary"]]
         end
         fetch_time = Time.at(
-          location_forecast
+          darksky_location_forecast
             .raw_response
             .dig("currently", "time"),
         )
-        fetch_timezone = location_forecast
+        fetch_timezone = darksky_location_forecast
                          .raw_response
                          .dig("currently", "timezone")
         fetch_time.in_time_zone(fetch_timezone)
-        location_forecast
+        darksky_location_forecast
           .raw_response.dig("daily", "data")
           .each do |daily_data|
             forecast_date = Time.at(daily_data["time"]).to_date
             location_forecast = location
                                 .location_forecasts
                                 .find_or_create_by(date: forecast_date)
+            hourly_data = darksky_location_forecast
+                          .raw_response
+                          .dig("hourly", "data")
+                          .filter { |times| Time.at(times["time"]).to_date == forecast_date }
             location_forecast
               .forecasts
               .create!(
@@ -85,6 +89,8 @@ namespace :forecast do
                 temperature_low: daily_data["temperatureLow"],
                 temperature_high: daily_data["temperatureHigh"],
                 summary: daily_data["summary"],
+                daily_data: daily_data,
+                hourly_data: hourly_data,
               )
           end
       end

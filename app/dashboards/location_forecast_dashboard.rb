@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class LocationDashboard < Administrate::BaseDashboard
+class LocationForecastDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -8,13 +8,10 @@ class LocationDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
+    location: Field::BelongsTo,
+    forecasts: Field::HasMany,
     id: Field::String.with_options(searchable: false),
-    name: Field::String,
-    latitude: Field::String.with_options(searchable: false),
-    longitude: Field::String.with_options(searchable: false),
-    is_fetching_forecast: Field::Boolean,
-    created_at: Field::DateTime,
-    updated_at: Field::DateTime,
+    date: Field::Date,
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -23,32 +20,27 @@ class LocationDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
-    name
-    latitude
-    longitude
-    is_fetching_forecast
+    location
+    forecasts
+    date
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
+    location
+    forecasts
     id
-    name
-    latitude
-    longitude
-    is_fetching_forecast
-    created_at
-    updated_at
+    date
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
-    name
-    latitude
-    longitude
-    is_fetching_forecast
+    location
+    forecasts
+    date
   ].freeze
 
   # COLLECTION_FILTERS
@@ -63,10 +55,10 @@ class LocationDashboard < Administrate::BaseDashboard
   #   }.freeze
   COLLECTION_FILTERS = {}.freeze
 
-  # Overwrite this method to customize how locations are displayed
+  # Overwrite this method to customize how location forecasts are displayed
   # across all pages of the admin dashboard.
 
-  def display_resource(location)
-    "Location #{location.name}"
+  def display_resource(location_forecast)
+    "LocationForecast ##{location_forecast.location.name} #{location_forecast.date}"
   end
 end
