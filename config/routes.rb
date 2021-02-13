@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     resources :locations
     resources :location_forecasts
     resources :forecasts
+    resources :point_of_interests
 
     root to: "users#index"
   end
