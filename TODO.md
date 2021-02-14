@@ -3,10 +3,15 @@
 - **CS** rails webpack:install:typescipt ???
 - [ ] data some POI
   - **MM 1.5** we should add some more data we are actually interest in
-  - **MM 2** user/admin can add an image - AWS S3 bucket & Upload Rails thing & how does this work in adminstrate?
-  - **MM 1** add administrate ability to use google places
-    - and all the things it returns, lat, long, type etc
-    - our quota
+  - **MM 2** user/admin can add an image - AWS S3 bucket & Upload Rails thing &
+    how does this work in adminstrate?
+  - [X] add administrate ability to use google places
+    - [X] and all the things it returns, lat, long, type etc
+    - [ ] our quota
+      https://developers.google.com/places/web-service/usage-and-billing#places-details
+      1.7 cents per each = $17 per 1,000
+      but you get $200 credits each month?
+      watch this space
   - styling of a POI
   - styling list of POI's ie dispaly 3 and > < to move left and right etc
   - **CS/MM** styling of the map - weather over time, display POI

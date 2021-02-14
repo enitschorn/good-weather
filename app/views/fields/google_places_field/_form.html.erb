@@ -1,0 +1,38 @@
+<%= javascript_pack_tag "places" %>
+
+<div class="field-unit__label">
+  <%= f.label field.attribute %>
+</div>
+<div
+    class="field-unit__field"
+    data-controller="places"
+    data-action="google-maps-callback@window->places#initAutocomplete">
+  <%= f.text_field(
+    field.attribute,
+    data: {
+      target: "places.field",
+    },
+    onkeydown: "return event.key != 'Enter';"
+  ) %>
+  <fieldset>
+    <div class="field-unit__label">
+      <%= f.label :latitude %>
+    </div>
+    <div class="field-unit__field">
+      <%= f.text_field :latitude, data: { target: "places.latitude" } %>
+    </div>
+    <div class="field-unit__label">
+      <%= f.label :longitude %>
+    </div>
+    <div class="field-unit__field">
+      <%= f.text_field :longitude, data: { target: "places.longitude" } %>
+    </div>
+  </fieldset>
+</div>
+
+<script
+     src="https://maps.googleapis.com/maps/api/js?key=<%= Rails.application.credentials.google[:api_key] %>&callback=initPlacesAutocomplete&libraries=places&v=weekly"
+     async defer
+     data-turbolinks-eval="false">
+</script>
+

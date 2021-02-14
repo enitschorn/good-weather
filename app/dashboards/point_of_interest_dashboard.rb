@@ -12,7 +12,7 @@ class PointOfInterestDashboard < Administrate::BaseDashboard
     location: Field::BelongsTo,
     id: Field::String.with_options(searchable: false),
     name: Field::String,
-    address: Field::String,
+    address: GooglePlacesField,
     phone: Field::String,
     website: Field::String,
     email: Field::String,
@@ -67,12 +67,12 @@ class PointOfInterestDashboard < Administrate::BaseDashboard
     user
     location
     name
+    latitude
+    longitude
     address
     phone
     website
     email
-    latitude
-    longitude
     description
     status
   ].freeze
