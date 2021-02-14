@@ -12,6 +12,7 @@
       1.7 cents per each = $17 per 1,000
       but you get $200 credits each month?
       watch this space
+    - [X] and display on page
   - styling of a POI
   - styling list of POI's ie dispaly 3 and > < to move left and right etc
   - **CS/MM** styling of the map - weather over time, display POI
