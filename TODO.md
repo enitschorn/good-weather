@@ -1,6 +1,19 @@
 # TODO
 
+- **CS** rails webpack:install:typescipt ???
 - [ ] data some POI
+  - **MM 1.5** we should add some more data we are actually interest in
+  - **MM 2** user/admin can add an image - AWS S3 bucket & Upload Rails thing & how does this work in adminstrate?
+  - **MM 1** add administrate ability to use google places
+    - and all the things it returns, lat, long, type etc
+    - our quota
+  - styling of a POI
+  - styling list of POI's ie dispaly 3 and > < to move left and right etc
+  - **CS/MM** styling of the map - weather over time, display POI
+  - filter for date, activity, general location
+  - activities to be many to many with POI's
+  - Alerts
+  - Alrts and POI's should have associated days of week for example things that are not open on sunday etc
 - [ ] weather data job
 - [ ] annoyances
   - [ ] sign in should take you to homepage? only to admin if you can admin

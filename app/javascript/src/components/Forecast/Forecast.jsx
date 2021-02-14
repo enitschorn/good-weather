@@ -3,7 +3,7 @@ import { any } from 'prop-types';
 import { ApolloProvider } from 'react-apollo';
 import ApolloClient from '../../api/ApolloClient';
 
-import ForecastList from './ForecastList';
+import PointOfInterestList from './PointOfInterestList';
 import ForecastMap from './ForecastMap';
 import ForecastSelector from './ForecastSelector';
 
@@ -31,7 +31,7 @@ export default function Forecast({ options: { googleApiKey } }) {
       </div>
       <div className="row">
         <div className="col-sm-6">
-          <ForecastList dates={dates} />
+          <PointOfInterestList dates={dates} />
         </div>
         <div className="col-sm-6">
           <ForecastMap dates={dates} mapKey={googleApiKey} />
