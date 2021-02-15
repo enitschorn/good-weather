@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_12_000000) do
+ActiveRecord::Schema.define(version: 2021_02_13_223727) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -46,6 +46,24 @@ ActiveRecord::Schema.define(version: 2021_02_12_000000) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "point_of_interests", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.string "address"
+    t.string "phone"
+    t.string "website"
+    t.string "email"
+    t.decimal "latitude", precision: 10, scale: 6, default: "0.0"
+    t.decimal "longitude", precision: 10, scale: 6, default: "0.0"
+    t.text "description"
+    t.uuid "location_id"
+    t.uuid "user_id", null: false
+    t.integer "status", default: 0, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["location_id"], name: "index_point_of_interests_on_location_id"
+    t.index ["user_id"], name: "index_point_of_interests_on_user_id"
+  end
+
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -71,4 +89,6 @@ ActiveRecord::Schema.define(version: 2021_02_12_000000) do
 
   add_foreign_key "forecasts", "location_forecasts"
   add_foreign_key "location_forecasts", "locations"
+  add_foreign_key "point_of_interests", "locations"
+  add_foreign_key "point_of_interests", "users"
 end

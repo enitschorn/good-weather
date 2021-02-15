@@ -18,5 +18,9 @@ module Types
     field :forecasts,
           resolver: Resolvers::Forecasts,
           description: "Find forecasts for a date range"
+
+    field :point_of_interests,
+          resolver: Resolvers::PointOfInterests,
+          description: "Find points of interests"
   end
 end
