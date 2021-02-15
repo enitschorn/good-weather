@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
-import { array, string } from 'prop-types';
-import { Query } from 'react-apollo';
-import { gql } from 'apollo-boost';
+import React, { useState, FC } from 'react';
+import { useQuery } from '@apollo/client';
+import  gql  from 'graphql-tag';
 import { Tooltip } from 'reactstrap';
 
 import GoogleMapReact from 'google-map-react';
@@ -24,7 +23,47 @@ const FORECASTS = gql`
   }
 `;
 
-const PoiMarker = ({ id, name }) => {
+interface PoiMarkerProps {
+  id: string,
+  name: string,
+  lat: string,
+  lng: string,
+};
+
+interface LocationMarkerProps {
+  id: string,
+  name: string,
+  summary: string,
+  lat: string,
+  lng: string,
+};
+
+interface ForecastMapProps {
+  dates: Date[],
+  mapKey: string,
+  pois: PointsOfInterestProps[],
+};
+
+interface Date {
+  date: string,
+}
+
+interface PointsOfInterestProps {
+  id: string,
+  name: string,
+  address?: string,
+  phone?: string,
+  website?: string,
+  email?: string,
+  lat: string,
+  lng: string,
+  description?: string,
+  status?: number,
+  latitude?: string,
+  longitude?: string,
+}
+
+const PoiMarker: FC<PoiMarkerProps> = ({ id, name, lat, lng }) => {
   const [tooltipOpen, setTooltipOpen] = useState(false);
   const toggleMenuToolTip = () => {
     setTooltipOpen(!tooltipOpen);
@@ -39,12 +78,7 @@ const PoiMarker = ({ id, name }) => {
   );
 };
 
-PoiMarker.propTypes = {
-  id: string.isRequired,
-  name: string.isRequired,
-};
-
-const LocationMarker = ({ id, name, summary }) => {
+const LocationMarker: FC<LocationMarkerProps> = ({ id, name, summary, lat, lng }) => {
   const [tooltipOpen, setTooltipOpen] = useState(false);
   const toggleMenuToolTip = () => {
     setTooltipOpen(!tooltipOpen);
@@ -62,25 +96,10 @@ const LocationMarker = ({ id, name, summary }) => {
   );
 };
 
-<<<<<<< HEAD:app/javascript/src/components/Forecast/ForecastMap.tsx
-AnyReactComponent.propTypes = {
-  text: string.isRequired,
-  lat: string,
-  lng: string,
-};
-
-ForecastMap.propTypes = {
-  dates: array.isRequired,
-  mapKey: string.isRequired,
-=======
-LocationMarker.propTypes = {
-  id: string.isRequired,
-  name: string.isRequired,
-  summary: string.isRequired,
->>>>>>> origin:app/javascript/src/components/Forecast/ForecastMap.jsx
-};
-
-export default function ForecastMap({ dates, mapKey, pois }) {
+export const ForecastMap: FC<ForecastMapProps> = ({ dates, pois, mapKey }) => {
+  const {loading, error, data} = useQuery(FORECASTS, {
+    variables: { dates: dates.map(({ date }) => date) }
+  })
   const defaultProps = {
     center: {
       lat: -37.803,
@@ -89,87 +108,53 @@ export default function ForecastMap({ dates, mapKey, pois }) {
     zoom: 7,
   };
 
+  if (loading) return <p>Loading ...</p>;
+  if (error) return <p>{`Error! ${dates} ${error.message}`}</p>;
+
+
+  if (data.forecasts.length === 0) {
+    return (
+      <div className="row">
+        <div className="col">
+          <div>select dates above ...</div>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <Query
-      query={FORECASTS}
-      variables={{ dates: dates.map(({ date }) => date) }}
-    >
-      {(result) => {
-        const { data, loading, error } = result;
-        if (loading) return 'loading ...';
-        if (error) return `Error! ${dates} ${error.message}`;
-        if (data.forecasts.length === 0) {
-          return (
-            <div className="row">
-              <div className="col">
-                <div>select dates above ...</div>
-              </div>
-            </div>
-          );
-        }
-<<<<<<< HEAD:app/javascript/src/components/Forecast/ForecastMap.tsx
-        return data.forecasts.map(
-          ({
-              id,
-              location: { latitude, longitude, name },
-            }) => (
-              <div style={{ height: '100vh', width: '100%' }}>
-              <GoogleMapReact
-                bootstrapURLKeys={{ key: mapKey }}
-                defaultCenter={defaultProps.center}
-                defaultZoom={defaultProps.zoom}
-              >
-                <AnyReactComponent key={id} text={name} lat={latitude} lng={longitude} />
-                </GoogleMapReact>
-            </div>
-          ),
-=======
-        return (
-          <div style={{ height: '100vh', width: '100%' }}>
-            <GoogleMapReact
-              bootstrapURLKeys={{ key: mapKey }}
-              defaultCenter={defaultProps.center}
-              defaultZoom={defaultProps.zoom}
-            >
-              {data.forecasts.map(({
-                id: key, summary, location: {
-                  id, latitude, longitude, name,
-                },
-              }) => (
-                <LocationMarker
-                  key={key}
-                  id={id}
-                  name={name}
-                  lat={latitude}
-                  lng={longitude}
-                  summary={summary}
-                />
-              ))}
-              {pois.map(({
-                id, name, latitude, longitude,
-              }) => (
-                <PoiMarker
-                  key={`poi-${id}`}
-                  name={name}
-                  id={id}
-                  lat={latitude}
-                  lng={longitude}
-                />
-              ))}
-            </GoogleMapReact>
-          </div>
->>>>>>> origin:app/javascript/src/components/Forecast/ForecastMap.jsx
-        );
-      }}
-    </Query>
+    <div style={{ height: '100vh', width: '100%' }}>
+      <GoogleMapReact
+        bootstrapURLKeys={{ key: mapKey }}
+        defaultCenter={defaultProps.center}
+        defaultZoom={defaultProps.zoom}
+      >
+        {data.forecasts.map(({
+          id: key, summary, location: {
+            id, latitude, longitude, name
+          },
+        }) => (
+          <LocationMarker
+            key={key}
+            id={id}
+            name={name}
+            summary={summary}
+            lat={latitude}
+            lng={longitude}
+          />
+        ))}
+        {pois.map(({
+          id, name, latitude, longitude,
+        }) => (
+          <PoiMarker
+            key={`poi-${id}`}
+            name={name}
+            id={id}
+            lat={latitude}
+            lng={longitude}
+          />
+        ))}
+      </GoogleMapReact>
+    </div>
   );
 }
-<<<<<<< HEAD:app/javascript/src/components/Forecast/ForecastMap.tsx
-=======
-
-ForecastMap.propTypes = {
-  dates: array.isRequired,
-  mapKey: string.isRequired,
-  pois: array.isRequired,
-};
->>>>>>> origin:app/javascript/src/components/Forecast/ForecastMap.jsx

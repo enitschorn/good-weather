@@ -1,13 +1,20 @@
-import React from 'react';
-import { string, number } from 'prop-types';
+import React, { FC } from 'react';
 
-export default function ForecastListItem({
+interface ForecastListItemProps {
+  name: string,
+  date: string,
+  summary: string,
+  temperatureLow: number,
+  temperatureHigh: number,
+}
+
+export const ForecastListItem: FC<ForecastListItemProps> = ({
   name,
   date,
   summary,
   temperatureLow,
   temperatureHigh,
-}) {
+}) => {
   return (
     <div className="card">
       <h3>{name}</h3>
@@ -17,11 +24,3 @@ export default function ForecastListItem({
     </div>
   );
 }
-
-ForecastListItem.propTypes = {
-  name: string.isRequired,
-  date: string.isRequired,
-  summary: string.isRequired,
-  temperatureLow: number.isRequired,
-  temperatureHigh: number.isRequired,
-};

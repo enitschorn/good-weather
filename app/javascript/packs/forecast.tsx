@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Forecast from '../src/components/Forecast/Forecast';
+import { Forecast } from '../src/components/Forecast/Forecast';
 
 const elements = document.getElementsByClassName('forecast');
 

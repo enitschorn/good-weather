@@ -1,7 +1,18 @@
-import React from 'react';
-import { string } from 'prop-types';
+import React, { FC } from 'react';
 
-export default function ForecastListItem({
+interface PointOfInterestListItemProps {
+  id: string,
+  name: string,
+  address?: string,
+  phone?: string,
+  website?: string,
+  email?: string,
+  latitude?: string,
+  longitude?: string,
+  description?: string,
+};
+
+export const PointOfInterestListItem: FC<PointOfInterestListItemProps> = ({
   id,
   name,
   address,
@@ -11,7 +22,7 @@ export default function ForecastListItem({
   latitude,
   longitude,
   description,
-}) {
+}) => {
   return (
     <div id={id} className="card">
       <h3>{name}</h3>
@@ -30,25 +41,3 @@ export default function ForecastListItem({
     </div>
   );
 }
-
-ForecastListItem.defaultProps = {
-  address: undefined,
-  phone: undefined,
-  website: undefined,
-  email: undefined,
-  latitude: undefined,
-  longitude: undefined,
-  description: undefined,
-};
-
-ForecastListItem.propTypes = {
-  id: string.isRequired,
-  name: string.isRequired,
-  address: string,
-  phone: string,
-  website: string,
-  email: string,
-  latitude: string,
-  longitude: string,
-  description: string,
-};
