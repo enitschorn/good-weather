@@ -26,9 +26,10 @@ export default function ForecastList({ dates }) {
       query={FORECASTS}
       variables={{ dates: dates.map(({ date }) => date) }}
     >
-      {({ loading, error, data }) => {
-        if (loading) return 'loading ...';
-        if (error) return `Error! ${dates} ${error.message}`;
+      {(result) => {
+        const { data, loading, error } = result;
+        if (loading) return <p>Loading...</p>;
+        if (error) return <p>{`Error! ${dates} ${error.message}`}</p>;
         if (data.forecasts.length === 0) {
           return (
             <div className="row">

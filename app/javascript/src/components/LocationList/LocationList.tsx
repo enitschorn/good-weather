@@ -40,19 +40,26 @@ export default function LocationList() {
             query={LOCATION_LIST}
             variables={{ query }}
           >
-            {({ loading, error, data }) => {
-              if (loading) return 'loading ...';
-              if (error) return `Error! ${query} ${error.message}`;
-              return data.locations.map(({
-                id, name, latitude, longitude,
-              }) => (
-                <div key={id} className="row">
-                  <div className="col-sm-3">{name}</div>
-                  <div className="col-sm-3">{latitude}</div>
-                  <div className="col-sm-6">{longitude}</div>
-                </div>
-              ));
-            }}
+            {
+              ((result: any) => {
+                const { loading, error, data } = result;
+
+                if (loading) return 'loading ...';
+                if (error) return `Error! ${query} ${error.message}`;
+
+                return data.locations.map(
+                  ({
+                    id, name, latitude, longitude,
+                  }) => (
+                    <div key={id} className="row">
+                      <div className="col-sm-3">{name}</div>
+                      <div className="col-sm-3">{latitude}</div>
+                      <div className="col-sm-6">{longitude}</div>
+                    </div>
+                  )
+                );
+              })
+            }
           </Query>
         </div>
       </div>

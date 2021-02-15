@@ -26,6 +26,13 @@ const AnyReactComponent = ({ text }) => <div className="card">{text}</div>;
 
 AnyReactComponent.propTypes = {
   text: string.isRequired,
+  lat: string,
+  lng: string,
+};
+
+ForecastMap.propTypes = {
+  dates: array.isRequired,
+  mapKey: string.isRequired,
 };
 
 export default function ForecastMap({ dates, mapKey }) {
@@ -42,7 +49,8 @@ export default function ForecastMap({ dates, mapKey }) {
       query={FORECASTS}
       variables={{ dates: dates.map(({ date }) => date) }}
     >
-      {({ loading, error, data }) => {
+      {(result) => {
+        const { data, loading, error } = result;
         if (loading) return 'loading ...';
         if (error) return `Error! ${dates} ${error.message}`;
         if (data.forecasts.length === 0) {
@@ -54,25 +62,23 @@ export default function ForecastMap({ dates, mapKey }) {
             </div>
           );
         }
-        return (
-          <div style={{ height: '100vh', width: '100%' }}>
-            <GoogleMapReact
-              bootstrapURLKeys={{ key: mapKey }}
-              defaultCenter={defaultProps.center}
-              defaultZoom={defaultProps.zoom}
-            >
-              {data.forecasts.map(({
-                id, location: { latitude, longitude, name },
-              }) => <AnyReactComponent key={id} text={name} lat={latitude} lng={longitude} />)}
-            </GoogleMapReact>
-          </div>
+        return data.forecasts.map(
+          ({
+              id,
+              location: { latitude, longitude, name },
+            }) => (
+              <div style={{ height: '100vh', width: '100%' }}>
+              <GoogleMapReact
+                bootstrapURLKeys={{ key: mapKey }}
+                defaultCenter={defaultProps.center}
+                defaultZoom={defaultProps.zoom}
+              >
+                <AnyReactComponent key={id} text={name} lat={latitude} lng={longitude} />
+                </GoogleMapReact>
+            </div>
+          ),
         );
       }}
     </Query>
   );
 }
-
-ForecastMap.propTypes = {
-  dates: array.isRequired,
-  mapKey: string.isRequired,
-};
