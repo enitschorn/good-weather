@@ -74,7 +74,7 @@ const PoiMarker: FC<PoiMarkerProps> = ({ id, name, lat, lng }) => {
   };
   return (
     <div>
-      <i className="fas fa-map-marker-alt" style={{ fontSize: '1.7em', color: 'green' }} id={`showPoiMarker${id}`} />
+      <i className="fas fa-map-marker-alt" style={{ fontSize: '2.5em', color: '#800064' }} id={`showPoiMarker${id}`} />
       <Tooltip placement="right" isOpen={tooltipOpen} target={`showPoiMarker${id}`} toggle={toggleMenuToolTip}>
         {name}
       </Tooltip>
