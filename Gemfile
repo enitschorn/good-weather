@@ -30,7 +30,14 @@ gem "bootsnap", ">= 1.4.4", require: false
 
 # admin dashboard
 gem "administrate"
+gem "administrate-field-active_storage"
 gem "administrate-field-jsonb"
+
+# image upload
+gem "image_processing"
+gem "mini_magick"
+
+gem "aws-sdk-s3", require: false
 
 # authentication
 gem "devise"

@@ -9,5 +9,6 @@ module Types
     field :address, String, null: false
     field :email, String, null: false
     field :description, String, null: false
+    field :feature_image_urls, [Types::Url], null: true
   end
 end

@@ -10,6 +10,7 @@ interface PointOfInterestListItemProps {
   latitude?: string,
   longitude?: string,
   description?: string,
+  featureImageUrls?: array,
 };
 
 export const PointOfInterestListItem: FC<PointOfInterestListItemProps> = ({
@@ -22,6 +23,7 @@ export const PointOfInterestListItem: FC<PointOfInterestListItemProps> = ({
   latitude,
   longitude,
   description,
+  featureImageUrls,
 }) => {
   return (
     <div id={id} className="card">
@@ -38,6 +40,7 @@ export const PointOfInterestListItem: FC<PointOfInterestListItemProps> = ({
         {' '}
         {longitude}
       </p>
+      <p>{featureImageUrls.map((image) => <img key={image.url} src={image.url} width="250px" /> )}</p>
     </div>
   );
 }

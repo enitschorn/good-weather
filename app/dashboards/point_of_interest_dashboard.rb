@@ -10,6 +10,7 @@ class PointOfInterestDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     user: Field::BelongsTo,
     location: Field::BelongsTo,
+    feature_images: Field::ActiveStorage,
     id: Field::String.with_options(searchable: false),
     name: Field::String,
     address: GooglePlacesField,
@@ -37,8 +38,6 @@ class PointOfInterestDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[
     user
     location
-    id
-    name
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -46,6 +45,7 @@ class PointOfInterestDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = %i[
     user
     location
+    feature_images
     id
     name
     address
@@ -66,6 +66,7 @@ class PointOfInterestDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = %i[
     user
     location
+    feature_images
     name
     latitude
     longitude
@@ -91,6 +92,10 @@ class PointOfInterestDashboard < Administrate::BaseDashboard
 
   # Overwrite this method to customize how point of interests are displayed
   # across all pages of the admin dashboard.
+
+  def permitted_attributes
+    super + [feature_images: []]
+  end
 
   def display_resource(point_of_interest)
     "PointOfInterest: #{point_of_interest.name}"
