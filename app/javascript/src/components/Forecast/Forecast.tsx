@@ -8,11 +8,9 @@ import { ForecastSelector } from './ForecastSelector';
 import ApolloClient from '../../api/ApolloClient'
 
 interface ForecastProps {
-  options: Key,
-}
-
-interface Key {
-  googleApiKey: string,
+  options: {
+    googleApiKey: string,
+  },
 }
 
 export const Forecast: FC<ForecastProps> = ({ options: { googleApiKey } }) => {
