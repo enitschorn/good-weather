@@ -1,13 +1,20 @@
-import React, { useEffect } from 'react';
-import { bool, func, string } from 'prop-types';
+import React, { useEffect, FC } from 'react';
 
-export default function ForecastSelectorDate({
+interface ForecastSelectorDateProps {
+  dateSelected: (date: any) => boolean,
+  toggleDate: (date: any) => void,
+  date: string,
+  displayDate: string,
+  isWeekend: boolean,
+}
+
+export const ForecastSelectorDate: FC<ForecastSelectorDateProps> = ({
   dateSelected,
   toggleDate,
   date,
   displayDate,
   isWeekend,
-}) {
+}) => {
   useEffect(() => {
     if (isWeekend) toggleDate(date);
   }, []);
@@ -25,11 +32,3 @@ export default function ForecastSelectorDate({
     </button>
   );
 }
-
-ForecastSelectorDate.propTypes = {
-  dateSelected: func.isRequired,
-  toggleDate: func.isRequired,
-  date: string.isRequired,
-  displayDate: string.isRequired,
-  isWeekend: bool.isRequired,
-};

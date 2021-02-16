@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
-import { any } from 'prop-types';
-import { ApolloProvider } from 'react-apollo';
-import ApolloClient from '../../api/ApolloClient';
+import React, { FC, useState } from 'react';
+import { ApolloProvider } from '@apollo/client';
 
-import PointOfInterestList from './PointOfInterestList';
-import ForecastMap from './ForecastMap';
-import ForecastSelector from './ForecastSelector';
+import { PointOfInterestList } from './PointOfInterestList';
+import { ForecastMap } from './ForecastMap';
+import { ForecastSelector } from './ForecastSelector';
 
-export default function Forecast({ options: { googleApiKey } }) {
+import ApolloClient from '../../api/ApolloClient'
+
+interface ForecastProps {
+  options: {
+    googleApiKey: string,
+  },
+}
+
+export const Forecast: FC<ForecastProps> = ({ options: { googleApiKey } }) => {
   const [dates, setDates] = useState([]);
   const [pois, setPois] = useState([]);
 
@@ -41,7 +47,3 @@ export default function Forecast({ options: { googleApiKey } }) {
     </ApolloProvider>
   );
 }
-
-Forecast.propTypes = {
-  options: any.isRequired,
-};
