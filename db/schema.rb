@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_13_223727) do
+ActiveRecord::Schema.define(version: 2021_02_16_100943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
-  create_table "forecasts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "forecasts", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "location_forecast_id", null: false
     t.date "date", null: false
     t.time "time"
@@ -27,17 +27,18 @@ ActiveRecord::Schema.define(version: 2021_02_13_223727) do
     t.datetime "updated_at", precision: 6, null: false
     t.jsonb "daily_data"
     t.jsonb "hourly_data"
+    t.string "icon"
     t.index ["location_forecast_id"], name: "index_forecasts_on_location_forecast_id"
   end
 
-  create_table "location_forecasts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "location_forecasts", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "location_id", null: false
     t.date "date"
     t.index ["location_id", "date"], name: "index_location_forecasts_on_location_id_and_date", unique: true
     t.index ["location_id"], name: "index_location_forecasts_on_location_id"
   end
 
-  create_table "locations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "locations", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.decimal "latitude", precision: 10, scale: 6, default: "0.0"
     t.decimal "longitude", precision: 10, scale: 6, default: "0.0"
@@ -46,7 +47,7 @@ ActiveRecord::Schema.define(version: 2021_02_13_223727) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "point_of_interests", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "point_of_interests", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.string "address"
     t.string "phone"
@@ -64,7 +65,7 @@ ActiveRecord::Schema.define(version: 2021_02_13_223727) do
     t.index ["user_id"], name: "index_point_of_interests_on_user_id"
   end
 
-  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "users", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

@@ -6,5 +6,6 @@ module Types
     field :summary, String, null: false
     field :temperature_low, Float, null: false
     field :temperature_high, Float, null: false
+    field :icon, String, null: false
   end
 end

@@ -14,6 +14,7 @@ class ForecastDashboard < Administrate::BaseDashboard
     summary: Field::String,
     temperature_low: Field::String.with_options(searchable: false),
     temperature_high: Field::String.with_options(searchable: false),
+    icon: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
     daily_data: Field::JSONB,
@@ -40,6 +41,7 @@ class ForecastDashboard < Administrate::BaseDashboard
     summary
     temperature_low
     temperature_high
+    icon
     created_at
     updated_at
     daily_data
@@ -55,6 +57,7 @@ class ForecastDashboard < Administrate::BaseDashboard
     summary
     temperature_low
     temperature_high
+    icon
     daily_data
     hourly_data
   ].freeze

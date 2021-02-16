@@ -2,6 +2,7 @@ import React, { useState, FC } from 'react';
 import { useQuery } from '@apollo/client';
 import  gql  from 'graphql-tag';
 import { Tooltip } from 'reactstrap';
+import { ForecastIcon } from './ForecastIcon'
 
 import GoogleMapReact from 'google-map-react';
 
@@ -19,6 +20,7 @@ const FORECASTS = gql`
       summary
       temperatureLow
       temperatureHigh
+      icon
     }
   }
 `;
@@ -36,6 +38,7 @@ interface LocationMarkerProps {
   summary: string,
   lat: string,
   lng: string,
+  icon: string,
 };
 
 interface ForecastMapProps {
@@ -63,6 +66,7 @@ interface PointsOfInterestProps {
   longitude?: string,
 }
 
+
 const PoiMarker: FC<PoiMarkerProps> = ({ id, name, lat, lng }) => {
   const [tooltipOpen, setTooltipOpen] = useState(false);
   const toggleMenuToolTip = () => {
@@ -78,14 +82,15 @@ const PoiMarker: FC<PoiMarkerProps> = ({ id, name, lat, lng }) => {
   );
 };
 
-const LocationMarker: FC<LocationMarkerProps> = ({ id, name, summary, lat, lng }) => {
+const LocationMarker: FC<LocationMarkerProps> = ({ id, name, summary, icon, lat, lng }) => {
   const [tooltipOpen, setTooltipOpen] = useState(false);
   const toggleMenuToolTip = () => {
     setTooltipOpen(!tooltipOpen);
   };
+
   return (
     <div>
-      <i className="fas fa-cloud-sun" style={{ fontSize: '2em', color: 'amber' }} id={`showLocationMarker${id}`} />
+      <ForecastIcon name={icon} id={`showLocationMarker${id}`} />
       <Tooltip placement="right" isOpen={tooltipOpen} target={`showLocationMarker${id}`} toggle={toggleMenuToolTip}>
         {name}
         {' '}
@@ -130,7 +135,7 @@ export const ForecastMap: FC<ForecastMapProps> = ({ dates, pois, mapKey }) => {
         defaultZoom={defaultProps.zoom}
       >
         {data.forecasts.map(({
-          id: key, summary, location: {
+          id: key, summary, icon, location: {
             id, latitude, longitude, name
           },
         }) => (
@@ -141,6 +146,7 @@ export const ForecastMap: FC<ForecastMapProps> = ({ dates, pois, mapKey }) => {
             summary={summary}
             lat={latitude}
             lng={longitude}
+            icon={icon}
           />
         ))}
         {pois.map(({

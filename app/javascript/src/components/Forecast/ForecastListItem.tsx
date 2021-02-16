@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { ForecastIcon } from './ForecastIcon';
 
 interface ForecastListItemProps {
   name: string,
@@ -6,6 +7,7 @@ interface ForecastListItemProps {
   summary: string,
   temperatureLow: number,
   temperatureHigh: number,
+  icon: string,
 }
 
 export const ForecastListItem: FC<ForecastListItemProps> = ({
@@ -14,12 +16,14 @@ export const ForecastListItem: FC<ForecastListItemProps> = ({
   summary,
   temperatureLow,
   temperatureHigh,
+  icon,
 }) => {
   return (
     <div className="card">
       <h3>{name}</h3>
       <div>{date}</div>
       <div>{summary}</div>
+      <ForecastIcon name={icon} />
       <div>{`${temperatureLow} - ${temperatureHigh}`}</div>
     </div>
   );

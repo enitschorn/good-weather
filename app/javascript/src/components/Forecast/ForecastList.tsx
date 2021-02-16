@@ -15,6 +15,7 @@ const FORECASTS = gql`
       summary
       temperatureLow
       temperatureHigh
+      icon
     }
   }
 `;
@@ -52,6 +53,7 @@ export const ForecastList: FC<ForecastListProps> = ({ dates }) => {
       summary,
       temperatureLow,
       temperatureHigh,
+      icon
     }) => (
       <ForecastListItem
         key={`${id}-${date}`}
@@ -60,6 +62,7 @@ export const ForecastList: FC<ForecastListProps> = ({ dates }) => {
         summary={summary}
         temperatureLow={temperatureLow}
         temperatureHigh={temperatureHigh}
+        icon={icon}
       />
     ),
   );

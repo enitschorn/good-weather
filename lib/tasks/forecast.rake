@@ -60,7 +60,7 @@ namespace :forecast do
           lat: location.latitude, long: location.longitude,
         )
         darksky_location_forecast.raw_response["daily"]["data"].map do |h|
-          [Time.at(h["time"]).to_date, h["temperatureLow"], h["temperatureHigh"], h["summary"]]
+          [Time.at(h["time"]).to_date, h["temperatureLow"], h["temperatureHigh"], h["summary"], h["icon"]]
         end
         fetch_time = Time.at(
           darksky_location_forecast
@@ -89,6 +89,7 @@ namespace :forecast do
                 temperature_low: daily_data["temperatureLow"],
                 temperature_high: daily_data["temperatureHigh"],
                 summary: daily_data["summary"],
+                icon: daily_data["icon"],
                 daily_data: daily_data,
                 hourly_data: hourly_data,
               )
