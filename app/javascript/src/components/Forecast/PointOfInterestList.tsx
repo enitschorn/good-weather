@@ -16,6 +16,9 @@ const FORECASTS = gql`
       latitude
       longitude
       description
+      featureImageUrls{
+        url
+      }
     }
   }
 `;
@@ -61,6 +64,7 @@ export const PointOfInterestList: FC<PointOfInterestListProps> = ({ dates, setPo
         latitude,
         longitude,
         description,
+        featureImageUrls,
       }) => (
         <PointOfInterestListItem
           key={id}
@@ -73,6 +77,7 @@ export const PointOfInterestList: FC<PointOfInterestListProps> = ({ dates, setPo
           latitude={latitude}
           longitude={longitude}
           description={description}
+          featureImageUrls={featureImageUrls}
         />
       ),
     )

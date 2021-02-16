@@ -3,8 +3,11 @@
 - **CS** rails webpack:install:typescipt ???
 - [ ] data some POI
   - **MM 1.5** we should add some more data we are actually interest in
-  - **MM 2** user/admin can add an image - AWS S3 bucket & Upload Rails thing &
+  - [x] user/admin can add an image - AWS S3 bucket & Upload Rails thing &
     how does this work in adminstrate?
+  - [ ] secure S3 bucket
+  - [ ] resize images
+  - [ ] image dispaly carousel
   - [X] add administrate ability to use google places
     - [X] and all the things it returns, lat, long, type etc
     - [ ] our quota
