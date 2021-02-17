@@ -1,7 +1,7 @@
 import React, { useState, FC } from 'react';
 import { useQuery } from '@apollo/client';
 import  gql  from 'graphql-tag';
-import { Tooltip } from 'reactstrap';
+import { Tooltip, Popover, PopoverBody, PopoverHeader } from 'reactstrap';
 import { ForecastIcon } from './ForecastIcon'
 
 import GoogleMapReact from 'google-map-react';
@@ -83,20 +83,18 @@ const PoiMarker: FC<PoiMarkerProps> = ({ id, name, lat, lng }) => {
 };
 
 const LocationMarker: FC<LocationMarkerProps> = ({ id, name, summary, icon, lat, lng }) => {
-  const [tooltipOpen, setTooltipOpen] = useState(false);
-  const toggleMenuToolTip = () => {
-    setTooltipOpen(!tooltipOpen);
+  const [popoverOpen, setPopoverOpen] = useState(false);
+  const togglePopover = () => {
+    setPopoverOpen(!popoverOpen);
   };
 
   return (
     <div>
       <ForecastIcon name={icon} id={`showLocationMarker${id}`} />
-      <Tooltip placement="right" isOpen={tooltipOpen} target={`showLocationMarker${id}`} toggle={toggleMenuToolTip}>
-        {name}
-        {' '}
-        -
-        {summary}
-      </Tooltip>
+      <Popover placement="right" isOpen={popoverOpen} target={`showLocationMarker${id}`} toggle={togglePopover}>
+        <PopoverHeader>{name}</PopoverHeader>
+        <PopoverBody>{summary}</PopoverBody>
+      </Popover>
     </div>
   );
 };
