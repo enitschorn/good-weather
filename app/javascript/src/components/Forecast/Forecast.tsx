@@ -16,6 +16,7 @@ interface ForecastProps {
 export const Forecast: FC<ForecastProps> = ({ options: { googleApiKey } }) => {
   const [dates, setDates] = useState([]);
   const [pois, setPois] = useState([]);
+  const [mapOnly, setMapOnly] = useState(true);
 
   const dateSelected = (date) => dates.filter((fDate) => fDate.date === date).length !== 0;
   const toggleDate = (date) => {
@@ -37,12 +38,34 @@ export const Forecast: FC<ForecastProps> = ({ options: { googleApiKey } }) => {
         </div>
       </div>
       <div className="row">
-        <div className="col-sm-6">
+        <div className="col">
+          <button
+            type="button"
+            className={`btn btn${mapOnly ? '' : '-outline'}-info float-right`}
+            onClick={() => setMapOnly(true)}
+          >
+            <i className="fas fa-map" />
+          </button>
+          <button
+            type="button"
+            className={`btn btn${mapOnly ? '-outline' : ''}-info float-right`}
+            onClick={() => setMapOnly(false)}
+          >
+            <i className="fas fa-list" />
+          </button>
+        </div>
+      </div>
+      <div className="row">
+        {mapOnly ? <div className="col">
+          <ForecastMap dates={dates} mapKey={googleApiKey} pois={pois} />
+        </div> : <><div className="col-sm-6">
           <PointOfInterestList dates={dates} setPois={setPois} />
         </div>
         <div className="col-sm-6">
           <ForecastMap dates={dates} mapKey={googleApiKey} pois={pois} />
         </div>
+        </>
+        }
       </div>
     </ApolloProvider>
   );
