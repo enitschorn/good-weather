@@ -1,14 +1,16 @@
-<div class="coming-soon">
-  <div class="bgimg min-vh-100">
-    <div class="topleft">
-      <p>Good Weather</p>
-    </div>
-    <div class="middle">
-      <h1>COMING SOON ...</h1>
-      <hr>
-    </div>
-    <div class="bottomleft">
-      <p></p>
-    </div>
-  </div>
-</div>
+<%= content_tag(
+  :div,
+  nil,
+  class: "seven-day-forecast jumbotron",
+  data: {
+    options: {
+      googleApiKey: Rails.application.credentials.google[:api_key],
+      location: {
+        name: "Melbourne",
+        latitude: -37.81,
+        longitude: 144.96,
+      }
+    }
+  }
+) %>
+<%= javascript_pack_tag "sevenDayForecast" %>

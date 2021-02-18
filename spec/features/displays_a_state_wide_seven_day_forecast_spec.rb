@@ -38,21 +38,49 @@ feature "displays a state wide seven day forecast", js: true do
     end
 
     When "the home page is visited" do
-      # should be root once we "launch"
-      # visit root_path
-      visit forecast_path
+      visit root_path
     end
 
     Then "the map is centered on Melbourne" do
-      pending "a map like test thing being rendered on the page even if there are no forecasts"
       wait_for do
         page.find('[data-testid="map"]')
       end.to be_truthy
+      # dismiss the developer version of maps
+      page.find(".dismissButton").click
     end
 
-    And "the locations are displayed"
-    But "no forecasts are displayed"
-    When "the fetch forecast job runs successfully"
+    And "the locations are displayed" do
+      wait_for do
+        page
+          .find_all('[data-testid|="map-marker"]')
+          .map do |marker_div|
+          [
+            marker_div.text,
+            { lat: marker_div["lat"], lng: marker_div["lng"] },
+          ]
+        end
+          .to_h
+      end.to match(
+        {
+          "Bairnsdale" => { lat: "-37.853671", lng: "147.603693" },
+          "Melbourne" => { lat: "-37.814218", lng: "144.963161" },
+          "Warragul" => { lat: "-38.150476", lng: "145.93028" },
+          "Warrnambool" => { lat: "-38.382624", lng: "142.481419" },
+        },
+      )
+    end
+
+    But "no forecasts are displayed" do
+      wait_for do
+        page.find_all('[data-testid|="forecast-marker"]')
+      end.to be_empty
+    end
+
+    When "the fetch forecast job runs successfully" do
+      pending "how will forecasts be displayed"
+      expect(false).to be_truthy # how to run a fake forecast cron job
+    end
+
     And "the home page is visited again"
     Then "there are forecasts for all the locations"
     And "the map cycles through each forecast day by day"
