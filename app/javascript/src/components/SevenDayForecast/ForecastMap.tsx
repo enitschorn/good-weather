@@ -1,4 +1,4 @@
-import React, { useState, FC } from "react";
+import React, { FC } from "react";
 import GoogleMapReact from "google-map-react";
 
 interface ForecastMapProps {
@@ -22,7 +22,6 @@ const ForecastMap: FC<ForecastMapProps> = ({
     zoom: 7,
   };
 
-  console.log(googleApiKey);
   return (
     <div style={{ height: "70vh", width: "100%" }} data-testid="map">
       <GoogleMapReact
