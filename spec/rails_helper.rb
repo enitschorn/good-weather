@@ -82,4 +82,7 @@ RSpec.configure do |config|
     vcr_config.ignore_localhost = true
     vcr_config.allow_http_connections_when_no_cassette = true
   end
+
+  # Use FactoryBot shortcuts
+  config.include FactoryBot::Syntax::Methods
 end

@@ -4,10 +4,14 @@ module.exports = {
     es2021: true,
     jquery: true,
   },
+  "parser": "babel-eslint",
   extends: [
     'plugin:react/recommended',
     'airbnb',
   ],
+  globals: {
+    "google": false,
+  },
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
