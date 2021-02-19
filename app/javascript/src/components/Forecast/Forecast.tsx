@@ -57,12 +57,12 @@ export const Forecast: FC<ForecastProps> = ({ options: { googleApiKey } }) => {
       </div>
       <div className="row">
         {mapOnly ? <div className="col">
-          <ForecastMap dates={dates} mapKey={googleApiKey} pois={pois} />
+          <ForecastMap dates={dates} mapKey={googleApiKey} />
         </div> : <><div className="col-sm-6">
           <PointOfInterestList dates={dates} setPois={setPois} />
         </div>
         <div className="col-sm-6">
-          <ForecastMap dates={dates} mapKey={googleApiKey} pois={pois} />
+          <ForecastMap dates={dates} mapKey={googleApiKey} />
         </div>
         </>
         }

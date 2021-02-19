@@ -39,67 +39,42 @@ interface LocationMarkerProps {
   lat: string,
   lng: string,
   icon: string,
+  temperatureHigh: string,
 };
 
 interface ForecastMapProps {
   dates: Date[],
   mapKey: string,
-  pois: PointsOfInterestProps[],
 };
 
 interface Date {
   date: string,
 }
 
-interface PointsOfInterestProps {
-  id: string,
-  name: string,
-  address?: string,
-  phone?: string,
-  website?: string,
-  email?: string,
-  lat: string,
-  lng: string,
-  description?: string,
-  status?: number,
-  latitude?: string,
-  longitude?: string,
-}
 
-
-const PoiMarker: FC<PoiMarkerProps> = ({ id, name, lat, lng }) => {
-  const [tooltipOpen, setTooltipOpen] = useState(false);
-  const toggleMenuToolTip = () => {
-    setTooltipOpen(!tooltipOpen);
-  };
-  return (
-    <div>
-      <i className="fas fa-map-marker-alt" style={{ fontSize: '2.5em', color: '#800064' }} id={`showPoiMarker${id}`} />
-      <Tooltip placement="right" isOpen={tooltipOpen} target={`showPoiMarker${id}`} toggle={toggleMenuToolTip}>
-        {name}
-      </Tooltip>
-    </div>
-  );
-};
-
-const LocationMarker: FC<LocationMarkerProps> = ({ id, name, summary, icon, lat, lng }) => {
+const LocationMarker: FC<LocationMarkerProps> = ({ id, name, summary, icon, temperatureHigh, lat, lng }) => {
   const [popoverOpen, setPopoverOpen] = useState(false);
   const togglePopover = () => {
     setPopoverOpen(!popoverOpen);
   };
+
+  const temperature = Math.round(Number(temperatureHigh))
 
   return (
     <div>
       <ForecastIcon name={icon} id={`showLocationMarker${id}`} />
       <Popover placement="right" isOpen={popoverOpen} target={`showLocationMarker${id}`} toggle={togglePopover}>
         <PopoverHeader>{name}</PopoverHeader>
-        <PopoverBody>{summary}</PopoverBody>
+        <PopoverBody>
+          <h4>{temperature}°C</h4>
+          <div>{summary}</div>
+        </PopoverBody>
       </Popover>
     </div>
   );
 };
 
-export const ForecastMap: FC<ForecastMapProps> = ({ dates, pois, mapKey }) => {
+export const ForecastMap: FC<ForecastMapProps> = ({ dates, mapKey }) => {
   const {loading, error, data} = useQuery(FORECASTS, {
     variables: { dates: dates.map(({ date }) => date) }
   })
@@ -133,7 +108,7 @@ export const ForecastMap: FC<ForecastMapProps> = ({ dates, pois, mapKey }) => {
         defaultZoom={defaultProps.zoom}
       >
         {data.forecasts.map(({
-          id: key, summary, icon, location: {
+          id: key, summary, icon, temperatureHigh, location: {
             id, latitude, longitude, name
           },
         }) => (
@@ -145,17 +120,7 @@ export const ForecastMap: FC<ForecastMapProps> = ({ dates, pois, mapKey }) => {
             lat={latitude}
             lng={longitude}
             icon={icon}
-          />
-        ))}
-        {pois.map(({
-          id, name, latitude, longitude,
-        }) => (
-          <PoiMarker
-            key={`poi-${id}`}
-            name={name}
-            id={id}
-            lat={latitude}
-            lng={longitude}
+            temperatureHigh={temperatureHigh}
           />
         ))}
       </GoogleMapReact>
