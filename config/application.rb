@@ -34,6 +34,7 @@ module GoodWeather
 
     config.to_prepare do
       Devise::Mailer.layout "mailer"
+      DeviseController.layout "application_devise"
     end
 
     config.generators do |g|

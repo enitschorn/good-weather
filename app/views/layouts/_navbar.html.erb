@@ -22,14 +22,32 @@
     </ul>
   </div>
 
-  <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarContent"
-      aria-controls="navbarToggleContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  <ul class="navbar-nav ml-auto" style="flex-direction: row;">
+    <% if signed_in? %>
+      <span class="nav-link">
+        <%= current_user.email %>
+      </span>
+      <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: "btn btn-primary" %>
+    <% else %>
+      <li class="nav-link">
+        <%= link_to 'Log in', new_user_session_path, class: "btn" %>
+      </li>
+      <li class="nav-link">
+        <%= link_to 'Sign up', new_user_registration_path, class: "btn btn-primary" %>
+      </li>
+    <% end %>
+  </ul>
+
+  <% if signed_in? && current_user.user_actions&.dig("admin", "can_administer") %>
+    <button
+        class="navbar-toggler ml-3"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarContent"
+        aria-controls="navbarToggleContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  <% end %>
 </nav>
