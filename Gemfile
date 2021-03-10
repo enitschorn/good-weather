@@ -42,6 +42,16 @@ gem "aws-sdk-s3", require: false
 # authentication
 gem "devise"
 
+gem "jwt"
+
+# Feature flipping
+# Flipper
+gem "flipper"
+# UI
+gem "flipper-ui"
+# Adapter
+gem "flipper-active_record"
+
 # api fetching
 gem "faraday"
 
@@ -60,7 +70,9 @@ gem "graphql"
 
 group :test do
   gem "capybara", ">= 3.14"
+  gem "capybara-email"
   gem "capybara-screenshot"
+
   gem "factory_bot_rails"
   gem "rspec-example_steps"
   gem "rspec-rails"

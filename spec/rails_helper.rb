@@ -8,6 +8,7 @@ if Rails.env.production?
 end
 require "rspec/rails"
 # Add additional requires below this line. Rails is not loaded until this point!
+require "capybara/email/rspec"
 
 # used by other page_fragments
 require "support/features/page_fragments/util"

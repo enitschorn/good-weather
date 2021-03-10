@@ -41,6 +41,21 @@ feature "displays a state wide seven day forecast", js: true do
       visit root_path
     end
 
+    And "Sarah Chipps of Jewelbots signs up and is promoted to a beta invite" do
+      page.find(".pre-container .jumbotron button", text: "Register for early beta").click
+      page.find("form.new_user").fill_in("Email", with: "sarah.chipps@jewelbots.com")
+      page.find("form.new_user").find('input[type="submit"]').click
+      wait_for do
+        page.find('.alert [data-testid="message"]').text
+      end.to eq "A message with a confirmation link has been sent to your email address. " \
+        "Please follow the link to activate your account."
+
+      Flipper[:beta_search].enable User.find_by(email: "sarah.chipps@jewelbots.com")
+
+      open_email "sarah.chipps@jewelbots.com"
+      current_email.click_link "CONFIRM MY ACCOUNT"
+    end
+
     Then "the map is centered on Melbourne" do
       wait_for do
         page.find('[data-testid="map"]')

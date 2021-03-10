@@ -1,16 +1,53 @@
-<%= content_tag(
-  :div,
-  nil,
-  class: "seven-day-forecast jumbotron",
-  data: {
-    options: {
-      googleApiKey: Rails.application.credentials.google[:api_key],
-      location: {
-        name: "Melbourne",
-        latitude: -37.81,
-        longitude: 144.96,
-      }
-    }
-  }
-) %>
-<%= javascript_pack_tag "sevenDayForecast" %>
+<% content_for :pre_container do %>
+  <div class="jumbotron bg-secondary text-white">
+    <div class="container py-5 px-5">
+      <div class="row">
+        <div class="col-lg-3">
+          <div>
+            <h1 class="display-text stronger">Good Weather</h1>
+          </div>
+          <p class="display-text">
+            find the place and the weather, together
+          </p>
+          </div>
+            <div class="col-lg-9">
+              <input
+                class="form-control"
+                placeholder="check when Good Weather will be available in your area"
+                autofocus>
+              <div class="d-flex justify-content-center mt-5">
+                <% if !signed_in? %>
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    data-toggle="modal"
+                    data-target="#registerModal">
+                    Register for early beta
+                  </button>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-body">
+          <%= form_for(User.new, as: "user", url: registration_path("user")) do |f| %>
+            <div class="field">
+              <%= f.label :email %><br />
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+            </div>
+
+            <div class="actions mt-3">
+              <%= f.submit "Sign up", class: "btn btn-primary btn-block" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

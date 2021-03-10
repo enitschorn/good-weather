@@ -9,4 +9,11 @@ class UserMailer < ApplicationMailer
     @token = params[:token]
     mail(to: @user.email, subject: "Invited to admin")
   end
+
+  def user_beta_invitation
+    @user = params[:user]
+    @token = params[:token]
+    @reset_token = params[:reset_token]
+    mail(to: @user.email, subject: "Beta invitation")
+  end
 end

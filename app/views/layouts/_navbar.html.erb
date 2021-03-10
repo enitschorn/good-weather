@@ -2,24 +2,20 @@
   <a class="navbar-brand" href="/">Good Weather</a>
 
   <div class="collapse navbar-collapse" id="navbarContent">
-    <% if signed_in? && current_user.user_actions&.dig("admin", "can_administer") %>
+    <% if signed_in? %>
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <%= link_to "Admin", admin_root_path, class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "Forecast", forecast_path, class: "nav-link" %>
-        </li>
+        <% if current_user.user_actions&.dig("admin", "can_administer") %>
+          <li class="nav-item">
+            <%= link_to "Admin", admin_root_path, class: "nav-link" %>
+          </li>
+        <% end %>
+        <% if current_user.user_actions&.dig("admin", "can_administer") || Flipper[:beta_search].enabled?(current_user) %>
+          <li class="nav-item">
+            <%= link_to "Forecast", forecast_path, class: "nav-link" %>
+          </li>
+        <% end %>
       </ul>
     <% end %>
-    <ul class="navbar-nav ml-auto">
-      <% if signed_in? %>
-        <span class="nav-link">
-          <%= current_user.email %>
-        </span>
-        <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: "btn btn-primary" %>
-      <% end %>
-    </ul>
   </div>
 
   <ul class="navbar-nav ml-auto" style="flex-direction: row;">
@@ -38,7 +34,7 @@
     <% end %>
   </ul>
 
-  <% if signed_in? && current_user.user_actions&.dig("admin", "can_administer") %>
+  <% if signed_in? %>
     <button
         class="navbar-toggler ml-3"
         type="button"

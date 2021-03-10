@@ -65,3 +65,10 @@ body {
   @extend .alert-danger;
 }
 
+.pre-container {
+  .jumbotron {
+    border-radius: 0;
+    height: 500px;
+    padding: 0; // not really a jumbotron
+  }
+}

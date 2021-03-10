@@ -1,0 +1,43 @@
+<% if signed_in? && Flipper[:beta_search].enabled?(current_user) %>
+  <%= content_tag(
+    :div,
+    nil,
+    class: "seven-day-forecast jumbotron",
+    data: {
+      options: {
+        googleApiKey: Rails.application.credentials.google[:api_key],
+        location: {
+          name: "Melbourne",
+          latitude: -37.81,
+          longitude: 144.96,
+        }
+      }
+    }
+  ) %>
+  <%= javascript_pack_tag "sevenDayForecast" %>
+<% else %>
+  <% content_for :pre_container do %>
+    <div class="jumbotron bg-secondary text-white">
+      <div class="container py-5 px-5">
+        <div class="row">
+          <div class="col-lg-3">
+            <div>
+              <h1 class="display-text stronger">Good Weather</h1>
+            </div>
+            <p class="display-text">
+              find the place and the weather, together
+            </p>
+            </div>
+              <div class="col-lg-9">
+                <input
+                  class="form-control"
+                  placeholder="check when Good Weather will be available in your area"
+                  autofocus>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
