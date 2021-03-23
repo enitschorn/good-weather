@@ -8,4 +8,8 @@ class User < ApplicationRecord
   def user_actions=(value)
     self[:user_actions] = value.is_a?(String) ? JSON.parse(value) : value
   end
+
+  def flipper_id
+    id
+  end
 end

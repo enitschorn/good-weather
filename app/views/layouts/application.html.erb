@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>GoodWeather</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -12,9 +13,21 @@
 
   <body>
     <%= render partial: 'layouts/navbar' %>
+    <div class="position-relative">
+      <div class="position-absolute col mt-3">
+        <div class="container">
+          <div class="col">
+              <%= flash_messages %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pre-container">
+      <%= yield :pre_container %>
+    </div>
     <main class="container-fluid">
-      <%= flash_messages %>
-      <%= yield %>
+      <%= content_for?(:content) ? yield(:content) : yield %>
     </main>
+    <%= render partial: 'layouts/footer' %>
   </body>
 </html>

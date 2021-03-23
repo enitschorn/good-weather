@@ -2,8 +2,12 @@
 
 <p>You can confirm your account email through the link below:</p>
 
-<%= render partial: "/email_safe_button", locals: {
-  label: "Confirm my account",
-  href: confirmation_url(@resource, confirmation_token: @token),
-  align: "center",
-} %>
+<p>
+  <%= render partial: "./email_safe_button", locals: {
+    label: "CONFIRM MY ACCOUNT",
+    href: confirmation_url(@resource, confirmation_token: @token),
+    align: "center"
+  } %>
+</p>
+
+<p>Good Weather - find the place and the weather, together</p>

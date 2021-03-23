@@ -2,6 +2,7 @@ $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
 @import "~@fortawesome/fontawesome-free/scss/fontawesome";
 @import "~@fortawesome/fontawesome-free/scss/regular";
 @import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/brands";
 
 @import "~bootstrap/scss/bootstrap";
 $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
@@ -13,8 +14,61 @@ $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
 
 @import "coming_soon";
 
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  .container-fluid {
+    flex: 1;
+  }
+}
+
+.footer {
+  background-color: rgb(250, 251, 252);
+  font-size: 12px;
+  a {
+    @extend .text-secondary;
+  }
+}
+
 .alert {
   &.alert-alert {
     @extend .alert-warning;
+  }
+}
+
+.devise-form {
+  form {
+    margin-bottom: 1.25em;
+  }
+  .field {
+    @extend .form-group;
+  }
+  input {
+    &[type="email"], &[type="password"] {
+      @extend .form-control;
+    }
+    &[type="checkbox"] {
+      // @extend .form-check-input;
+    }
+    &[type="submit"] {
+      @extend .btn;
+      @extend .btn-primary;
+    }
+  }
+}
+
+#error_explanation {
+  @extend .invalid-feedback;
+  display: inherit;
+  @extend .alert;
+  @extend .alert-danger;
+}
+
+.pre-container {
+  .jumbotron {
+    border-radius: 0;
+    height: 500px;
+    padding: 0; // not really a jumbotron
   }
 }
