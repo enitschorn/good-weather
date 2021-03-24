@@ -4,6 +4,7 @@ import { ApolloProvider } from '@apollo/client';
 import { PointOfInterestList } from './PointOfInterestList';
 import { ForecastMap } from './ForecastMap';
 import { ForecastSelector } from './ForecastSelector';
+import { ForecastQuery } from './ForecastQuery';
 
 import ApolloClient from '../../api/ApolloClient'
 
@@ -17,6 +18,7 @@ export const Forecast: FC<ForecastProps> = ({ options: { googleApiKey } }) => {
   const [dates, setDates] = useState([]);
   const [pois, setPois] = useState([]);
   const [mapOnly, setMapOnly] = useState(true);
+  const [forecasts, setForecasts] = useState([]);
 
   const dateSelected = (date) => dates.filter((fDate) => fDate.date === date).length !== 0;
   const toggleDate = (date) => {
@@ -57,16 +59,17 @@ export const Forecast: FC<ForecastProps> = ({ options: { googleApiKey } }) => {
       </div>
       <div className="row">
         {mapOnly ? <div className="col">
-          <ForecastMap dates={dates} mapKey={googleApiKey} />
+          <ForecastMap mapKey={googleApiKey} forecasts={forecasts} />
         </div> : <><div className="col-sm-6">
           <PointOfInterestList dates={dates} setPois={setPois} />
         </div>
         <div className="col-sm-6">
-          <ForecastMap dates={dates} mapKey={googleApiKey} />
+          <ForecastMap mapKey={googleApiKey} forecasts={forecasts} />
         </div>
         </>
         }
       </div>
+      <ForecastQuery setForecasts={setForecasts} dates={dates} />
     </ApolloProvider>
   );
 }
