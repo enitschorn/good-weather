@@ -1,35 +1,26 @@
 import React, { FC } from 'react';
-import { useQuery } from '@apollo/client';
-import  gql  from 'graphql-tag';
-
 import { ForecastSelectorDate } from './ForecastSelectorDate';
 
-const FORECAST_DATES = gql`
-  query ForecastDates {
-    forecastDates {
-      date
-      displayDate
-      isWeekend
-    }
-  }
-`;
+interface ForecastDate {
+  date: string,
+  displayDate: string,
+  isWeekend: boolean,
+}
 
 interface ForecastSelectorProps {
   dateSelected: (date: any) => boolean,
   toggleDate: (date: any) => void,
+  forecastDates: ForecastDate[],
 }
 
-export const ForecastSelector: FC<ForecastSelectorProps> = ({ dateSelected, toggleDate }) => {
-  const { loading, error, data } = useQuery(FORECAST_DATES)
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>{`Error! ${error.message}`}</p>;
+export const ForecastSelector: FC<ForecastSelectorProps> = ({ dateSelected, toggleDate, forecastDates }) => {
 
   return (
     <div className="container my-2">
       <div className="row">
         <div className="col">
-          {data.forecastDates.map(({ date, displayDate, isWeekend }) => (
+          {forecastDates.map(({ date, displayDate, isWeekend }) => (
             <ForecastSelectorDate
               key={date}
               dateSelected={dateSelected}

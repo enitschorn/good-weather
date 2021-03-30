@@ -1,4 +1,4 @@
-import React, { useEffect, FC } from 'react';
+import React, { FC } from 'react';
 
 interface ForecastSelectorDateProps {
   dateSelected: (date: any) => boolean,
@@ -15,9 +15,6 @@ export const ForecastSelectorDate: FC<ForecastSelectorDateProps> = ({
   displayDate,
   isWeekend,
 }) => {
-  useEffect(() => {
-    if (isWeekend) toggleDate(date);
-  }, []);
 
   return (
     <button
