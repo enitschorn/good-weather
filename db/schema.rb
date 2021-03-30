@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2021_03_10_022506) do
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
-  create_table "active_storage_attachments", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
+  create_table "active_storage_attachments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
     t.uuid "record_id", null: false
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2021_03_10_022506) do
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
+  create_table "active_storage_blobs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 2021_03_10_022506) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "active_storage_variant_records", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
+  create_table "active_storage_variant_records", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2021_03_10_022506) do
     t.index ["feature_key", "key", "value"], name: "index_flipper_gates_on_feature_key_and_key_and_value", unique: true
   end
 
-  create_table "forecasts", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
+  create_table "forecasts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "location_forecast_id", null: false
     t.date "date", null: false
     t.time "time"
@@ -75,14 +75,14 @@ ActiveRecord::Schema.define(version: 2021_03_10_022506) do
     t.index ["location_forecast_id"], name: "index_forecasts_on_location_forecast_id"
   end
 
-  create_table "location_forecasts", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
+  create_table "location_forecasts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "location_id", null: false
     t.date "date"
     t.index ["location_id", "date"], name: "index_location_forecasts_on_location_id_and_date", unique: true
     t.index ["location_id"], name: "index_location_forecasts_on_location_id"
   end
 
-  create_table "locations", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
+  create_table "locations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name", null: false
     t.decimal "latitude", precision: 10, scale: 6, default: "0.0"
     t.decimal "longitude", precision: 10, scale: 6, default: "0.0"
@@ -109,7 +109,7 @@ ActiveRecord::Schema.define(version: 2021_03_10_022506) do
     t.index ["user_id"], name: "index_point_of_interests_on_user_id"
   end
 
-  create_table "users", id: :uuid, default: -> { "public.gen_random_uuid()" }, force: :cascade do |t|
+  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
