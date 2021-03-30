@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { useQuery } from '@apollo/client';
-import  gql  from 'graphql-tag';
+import gql from 'graphql-tag';
 
 import { ForecastListItem } from './ForecastListItem';
 
@@ -22,7 +22,7 @@ const FORECASTS = gql`
 
 interface ForecastListProps {
   dates: Date[],
-};
+}
 
 interface Date {
   date: string
@@ -30,8 +30,8 @@ interface Date {
 
 export const ForecastList: FC<ForecastListProps> = ({ dates }) => {
   const { loading, error, data } = useQuery(FORECASTS, {
-    variables: { dates: dates.map(({ date }) => date) }
-  })
+    variables: { dates: dates.map(({ date }) => date) },
+  });
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>{`Error! ${dates} ${error.message}`}</p>;
@@ -53,7 +53,7 @@ export const ForecastList: FC<ForecastListProps> = ({ dates }) => {
       summary,
       temperatureLow,
       temperatureHigh,
-      icon
+      icon,
     }) => (
       <ForecastListItem
         key={`${id}-${date}`}
@@ -66,4 +66,4 @@ export const ForecastList: FC<ForecastListProps> = ({ dates }) => {
       />
     ),
   );
-}
+};

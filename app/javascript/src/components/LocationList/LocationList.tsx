@@ -17,7 +17,7 @@ export const LocationList = () => {
   const [query, setQuery] = useState('');
   const { loading, error, data } = useQuery(LOCATION_LIST, {
     variables: query,
-  })
+  });
 
   if (loading) return <p>Loading ...</p>;
   if (error) return <p>{`Error! ${query} ${error.message}`}</p>;
@@ -40,7 +40,7 @@ export const LocationList = () => {
       <div className="row">
         <div className="col-sm-1" />
         <div className="col-sm-10">
-            {
+          {
               data.locations.map(
                 ({
                   id, name, latitude, longitude,
@@ -50,11 +50,11 @@ export const LocationList = () => {
                     <div className="col-sm-3">{latitude}</div>
                     <div className="col-sm-6">{longitude}</div>
                   </div>
-                )
+                ),
               )
             }
         </div>
       </div>
     </>
   );
-}
+};

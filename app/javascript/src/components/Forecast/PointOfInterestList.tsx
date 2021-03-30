@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { useQuery } from '@apollo/client';
-import  gql  from 'graphql-tag';
+import gql from 'graphql-tag';
 
 import { PointOfInterestListItem } from './PointOfInterestListItem';
 
@@ -26,7 +26,7 @@ const FORECASTS = gql`
 interface PointOfInterestListProps {
   dates: Date[],
   setPois: any,
-};
+}
 
 interface Date {
   date: string
@@ -34,8 +34,8 @@ interface Date {
 
 export const PointOfInterestList: FC<PointOfInterestListProps> = ({ dates, setPois }) => {
   const { loading, error, data } = useQuery(FORECASTS, {
-    variables: { dates: dates.map(({ date }) => date) }
-  })
+    variables: { dates: dates.map(({ date }) => date) },
+  });
 
   if (loading) return <p>Loading ...</p>;
   if (error) return <p>{`Error! ${dates} ${error.message}`}</p>;
@@ -81,5 +81,5 @@ export const PointOfInterestList: FC<PointOfInterestListProps> = ({ dates, setPo
         />
       ),
     )
-  )
-}
+  );
+};

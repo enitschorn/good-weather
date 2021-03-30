@@ -1,4 +1,7 @@
 import React, { FC } from 'react';
+interface FeatureImageUrls {
+  url: string,
+}
 
 interface PointOfInterestListItemProps {
   id: string,
@@ -10,8 +13,8 @@ interface PointOfInterestListItemProps {
   latitude?: string,
   longitude?: string,
   description?: string,
-  featureImageUrls?: array,
-};
+  featureImageUrls?: FeatureImageUrls[],
+}
 
 export const PointOfInterestListItem: FC<PointOfInterestListItemProps> = ({
   id,
@@ -24,23 +27,21 @@ export const PointOfInterestListItem: FC<PointOfInterestListItemProps> = ({
   longitude,
   description,
   featureImageUrls,
-}) => {
-  return (
-    <div id={id} className="card">
-      <h3>{name}</h3>
-      <p>{address}</p>
-      <p>{phone}</p>
-      <p>{website}</p>
-      <p>{email}</p>
-      <p>{description}</p>
-      <p>
-        {latitude}
-        {' '}
-        -
-        {' '}
-        {longitude}
-      </p>
-      <p>{featureImageUrls.map((image) => <img key={image.url} src={image.url} width="250px" /> )}</p>
-    </div>
-  );
-}
+}) => (
+  <div id={id} className="card">
+    <h3>{name}</h3>
+    <p>{address}</p>
+    <p>{phone}</p>
+    <p>{website}</p>
+    <p>{email}</p>
+    <p>{description}</p>
+    <p>
+      {latitude}
+      {' '}
+      -
+      {' '}
+      {longitude}
+    </p>
+    <p>{featureImageUrls.map((image) => <img key={image.url} src={image.url} width="250px" />)}</p>
+  </div>
+);

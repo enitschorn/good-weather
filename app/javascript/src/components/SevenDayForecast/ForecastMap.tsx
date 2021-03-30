@@ -1,5 +1,5 @@
-import React, { FC } from "react";
-import GoogleMapReact from "google-map-react";
+import React, { FC } from 'react';
+import GoogleMapReact from 'google-map-react';
 
 interface ForecastMapProps {
   googleApiKey: string;
@@ -23,7 +23,7 @@ const ForecastMap: FC<ForecastMapProps> = ({
   };
 
   return (
-    <div style={{ height: "70vh", width: "100%" }} data-testid="map">
+    <div style={{ height: '70vh', width: '100%' }} data-testid="map">
       <GoogleMapReact
         bootstrapURLKeys={{ key: googleApiKey }}
         defaultCenter={defaultProps.center}

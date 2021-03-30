@@ -1,20 +1,21 @@
 import React, { useState, FC } from 'react';
-import { Tooltip, Popover, PopoverBody, PopoverHeader } from 'reactstrap';
-import { ForecastIcon } from './ForecastIcon'
-
+import {
+  Tooltip, Popover, PopoverBody, PopoverHeader,
+} from 'reactstrap';
 import GoogleMapReact from 'google-map-react';
+import { ForecastIcon } from './ForecastIcon';
 
 interface PoiMarkerProps {
   id: string,
   name: string,
   lat: string,
   lng: string,
-};
+}
 
 interface ForecastMapProps {
   mapKey: string,
   forecasts: Forecasts[],
-};
+}
 
 interface Forecasts {
   location: {
@@ -38,20 +39,21 @@ interface LocationMarkerProps {
   lng: Float32Array,
   icon: string,
   temperatureHigh: string,
-};
+}
 
 interface Date {
   date: string,
 }
 
-
-const LocationMarker: FC<LocationMarkerProps> = ({ id, name, summary, icon, temperatureHigh, lat, lng }) => {
+const LocationMarker: FC<LocationMarkerProps> = ({
+  id, name, summary, icon, temperatureHigh, lat, lng,
+}) => {
   const [popoverOpen, setPopoverOpen] = useState(false);
   const togglePopover = () => {
     setPopoverOpen(!popoverOpen);
   };
 
-  const temperature = Math.round(Number(temperatureHigh))
+  const temperature = Math.round(Number(temperatureHigh));
 
   return (
     <div>
@@ -59,7 +61,10 @@ const LocationMarker: FC<LocationMarkerProps> = ({ id, name, summary, icon, temp
       <Popover placement="right" isOpen={popoverOpen} target={`showLocationMarker${id}`} toggle={togglePopover}>
         <PopoverHeader>{name}</PopoverHeader>
         <PopoverBody>
-          <h4>{temperature}°C</h4>
+          <h4>
+            {temperature}
+            °C
+          </h4>
           <div>{summary}</div>
         </PopoverBody>
       </Popover>
@@ -75,7 +80,6 @@ export const ForecastMap: FC<ForecastMapProps> = ({ mapKey, forecasts }) => {
     },
     zoom: 7,
   };
-
 
   if (forecasts.length === 0) {
     return (
@@ -96,7 +100,7 @@ export const ForecastMap: FC<ForecastMapProps> = ({ mapKey, forecasts }) => {
       >
         {forecasts.map(({
           id: key, summary, icon, temperatureHigh, location: {
-            id, latitude, longitude, name
+            id, latitude, longitude, name,
           },
         }) => (
           <LocationMarker
@@ -113,4 +117,4 @@ export const ForecastMap: FC<ForecastMapProps> = ({ mapKey, forecasts }) => {
       </GoogleMapReact>
     </div>
   );
-}
+};

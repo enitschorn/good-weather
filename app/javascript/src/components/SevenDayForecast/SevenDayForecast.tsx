@@ -1,5 +1,5 @@
-import React, { useState, useEffect, FC } from "react";
-import ForecastMap from "./ForecastMap";
+import React, { useState, useEffect, FC } from 'react';
+import ForecastMap from './ForecastMap';
 
 interface SevenDayForecastProps {
   options: {
@@ -12,10 +12,18 @@ interface SevenDayForecastProps {
 }
 
 const locationData = [
-  { name: "Bairnsdale", lat: -37.853671, lng: 147.603693, highlight: false },
-  { name: "Melbourne", lat: -37.814218, lng: 144.963161, highlight: false },
-  { name: "Warragul", lat: -38.150476, lng: 145.93028, highlight: false },
-  { name: "Warrnambool", lat: -38.382624, lng: 142.481419, highlight: false },
+  {
+    name: 'Bairnsdale', lat: -37.853671, lng: 147.603693, highlight: false,
+  },
+  {
+    name: 'Melbourne', lat: -37.814218, lng: 144.963161, highlight: false,
+  },
+  {
+    name: 'Warragul', lat: -38.150476, lng: 145.93028, highlight: false,
+  },
+  {
+    name: 'Warrnambool', lat: -38.382624, lng: 142.481419, highlight: false,
+  },
 ];
 
 const SevenDayForecast: FC<SevenDayForecastProps> = ({
@@ -45,7 +53,7 @@ const SevenDayForecast: FC<SevenDayForecastProps> = ({
       locationData.map((location) => ({
         ...location,
         highlight: location.name === highlightLocation.name,
-      }))
+      })),
     );
     setLastTime(time);
   }
@@ -56,10 +64,12 @@ const SevenDayForecast: FC<SevenDayForecastProps> = ({
       latitude={latitude}
       longitude={longitude}
     >
-      {locations.map(({ lat, lng, name, highlight }) => (
+      {locations.map(({
+        lat, lng, name, highlight,
+      }) => (
         <div
           key={name}
-          className={`popover ${highlight === true && "bg-success"}`}
+          className={`popover ${highlight === true && 'bg-success'}`}
           lat={lat}
           lng={lng}
           data-testid={`map-marker-${name}`}

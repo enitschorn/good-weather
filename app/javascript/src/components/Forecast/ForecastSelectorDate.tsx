@@ -14,18 +14,15 @@ export const ForecastSelectorDate: FC<ForecastSelectorDateProps> = ({
   date,
   displayDate,
   isWeekend,
-}) => {
-
-  return (
-    <button
-      type="button"
-      className={`btn btn${dateSelected(date) ? '' : '-outline'}${isWeekend ? '-warning' : '-secondary'} mr-1`}
-      onClick={() => toggleDate(date)}
-    >
-      {displayDate}
-      <i
-        className={`ml-2 fas ${dateSelected(date) ? 'fa-times' : 'fa-plus'}`}
-      />
-    </button>
-  );
-}
+}) => (
+  <button
+    type="button"
+    className={`btn btn${dateSelected(date) ? '' : '-outline'}${isWeekend ? '-warning' : '-secondary'} mr-1`}
+    onClick={() => toggleDate(date)}
+  >
+    {displayDate}
+    <i
+      className={`ml-2 fas ${dateSelected(date) ? 'fa-times' : 'fa-plus'}`}
+    />
+  </button>
+);

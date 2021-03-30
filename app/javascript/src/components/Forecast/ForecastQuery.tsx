@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
-import  gql  from 'graphql-tag';
+import gql from 'graphql-tag';
 
 const FORECASTS = gql`
   query Forecasts($dates: [String!]!) {
@@ -21,21 +21,19 @@ const FORECASTS = gql`
   }
 `;
 
-
-
 export const ForecastQuery = ({ dates, setForecasts }) => {
-    const {loading, error, data} = useQuery(FORECASTS, {
-        variables: { dates: dates.map(({ date }) => date) }
-    })
+  const { loading, error, data } = useQuery(FORECASTS, {
+    variables: { dates: dates.map(({ date }) => date) },
+  });
 
-    useEffect(() => {
-        if(!loading && data){
-          setForecasts(data.forecasts);
-        }
-    }, [loading, data])
+  useEffect(() => {
+    if (!loading && data) {
+      setForecasts(data.forecasts);
+    }
+  }, [loading, data]);
 
-    if (loading) return <p>Loading ...</p>;
-    if (error) return <p>{`Error! ${dates} ${error.message}`}</p>;  
+  if (loading) return <p>Loading ...</p>;
+  if (error) return <p>{`Error! ${dates} ${error.message}`}</p>;
 
-    return <div />
-}
+  return <div />;
+};

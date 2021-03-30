@@ -7,7 +7,7 @@ import { ForecastSelector } from './ForecastSelector';
 import { ForecastQuery } from './ForecastQuery';
 import { ForecastDateQuery } from './ForecastDateQuery';
 
-import ApolloClient from '../../api/ApolloClient'
+import ApolloClient from '../../api/ApolloClient';
 
 interface ForecastProps {
   options: {
@@ -79,19 +79,23 @@ export const Forecast: FC<ForecastProps> = ({ options: { googleApiKey } }) => {
         </div>
       </div>
       <div className="row">
-        {mapOnly ? <div className="col">
-          <ForecastMap mapKey={googleApiKey} forecasts={forecasts} />
-        </div> : <><div className="col-sm-6">
-          <PointOfInterestList dates={dates} setPois={setPois} />
-        </div>
-        <div className="col-sm-6">
-          <ForecastMap mapKey={googleApiKey} forecasts={forecasts} />
-        </div>
-        </>
-        }
+        {mapOnly ? (
+          <div className="col">
+            <ForecastMap mapKey={googleApiKey} forecasts={forecasts} />
+          </div>
+        ) : (
+          <>
+            <div className="col-sm-6">
+              <PointOfInterestList dates={dates} setPois={setPois} />
+            </div>
+            <div className="col-sm-6">
+              <ForecastMap mapKey={googleApiKey} forecasts={forecasts} />
+            </div>
+          </>
+        )}
       </div>
       <ForecastDateQuery setForecastDates={setForecastDates} />
       <ForecastQuery setForecasts={setForecasts} dates={dates} />
     </ApolloProvider>
   );
-}
+};

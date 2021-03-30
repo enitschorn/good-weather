@@ -13,25 +13,21 @@ interface ForecastSelectorProps {
   forecastDates: ForecastDate[],
 }
 
-
-export const ForecastSelector: FC<ForecastSelectorProps> = ({ dateSelected, toggleDate, forecastDates }) => {
-
-  return (
-    <div className="container my-2">
-      <div className="row">
-        <div className="col">
-          {forecastDates.map(({ date, displayDate, isWeekend }) => (
-            <ForecastSelectorDate
-              key={date}
-              dateSelected={dateSelected}
-              toggleDate={toggleDate}
-              date={date}
-              displayDate={displayDate}
-              isWeekend={isWeekend}
-            />
-          ))}
-        </div>
+export const ForecastSelector: FC<ForecastSelectorProps> = ({ dateSelected, toggleDate, forecastDates }) => (
+  <div className="container my-2">
+    <div className="row">
+      <div className="col">
+        {forecastDates.map(({ date, displayDate, isWeekend }) => (
+          <ForecastSelectorDate
+            key={date}
+            dateSelected={dateSelected}
+            toggleDate={toggleDate}
+            date={date}
+            displayDate={displayDate}
+            isWeekend={isWeekend}
+          />
+        ))}
       </div>
     </div>
-  );
-}
+  </div>
+);

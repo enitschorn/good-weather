@@ -17,14 +17,12 @@ export const ForecastListItem: FC<ForecastListItemProps> = ({
   temperatureLow,
   temperatureHigh,
   icon,
-}) => {
-  return (
-    <div className="card">
-      <h3>{name}</h3>
-      <div>{date}</div>
-      <div>{summary}</div>
-      <ForecastIcon name={icon} />
-      <div>{`${temperatureLow} - ${temperatureHigh}`}</div>
-    </div>
-  );
-}
+}) => (
+  <div className="card">
+    <h3>{name}</h3>
+    <div>{date}</div>
+    <div>{summary}</div>
+    <ForecastIcon name={icon} />
+    <div>{`${temperatureLow} - ${temperatureHigh}`}</div>
+  </div>
+);
