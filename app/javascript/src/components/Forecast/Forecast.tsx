@@ -23,11 +23,13 @@ export const Forecast: FC<ForecastProps> = ({ options: { googleApiKey } }) => {
   const [forecastDates, setForecastDates] = useState([]);
   const [time, setTime] = useState(0);
   const [lastTime, setLastTime] = useState(0);
+  const [timer, setTimer] = useState(null);
+  const [timerIsRunning, setTimerIsRunning] = useState(true);
 
   useEffect(() => {
-    const timer = window.setInterval(() => {
+    setTimer(window.setInterval(() => {
       setTime((prevTime) => prevTime + 1);
-    }, 1000);
+    }, 1000));
     return () => {
       window.clearInterval(timer);
     };
@@ -42,6 +44,11 @@ export const Forecast: FC<ForecastProps> = ({ options: { googleApiKey } }) => {
 
   const dateSelected = (date) => dates.filter((fDate) => fDate.date === date).length !== 0;
   const toggleDate = (date) => {
+    if (timerIsRunning) {
+      setTimerIsRunning(false);
+      window.clearInterval(timer);
+      setDates(dates.length = 0);
+    }
     if (dateSelected(date)) {
       setDates(dates.filter((selectedDate) => selectedDate.date !== date));
     } else {
