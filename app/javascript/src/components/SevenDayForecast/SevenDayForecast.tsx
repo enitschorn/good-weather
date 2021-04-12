@@ -45,7 +45,7 @@ const SevenDayForecast: FC<SevenDayForecastProps> = ({
     };
   }, []);
 
-  if (lastTime != time) {
+  if (lastTime !== time) {
     const highlightLocation = locationData[time % locationData.length];
     // NOTE: adding removing locations does NOT reload the map
     // setLocations([highlightLocation]);

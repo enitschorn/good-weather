@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
 interface ForecastIconProps {
-	id?: string,
+  id?: string,
   name: string,
 }
 

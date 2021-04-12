@@ -13,7 +13,9 @@ interface ForecastSelectorProps {
   forecastDates: ForecastDate[],
 }
 
-export const ForecastSelector: FC<ForecastSelectorProps> = ({ dateSelected, toggleDate, forecastDates }) => (
+export const ForecastSelector: FC<ForecastSelectorProps> = (
+  { dateSelected, toggleDate, forecastDates },
+) => (
   <div className="container my-2">
     <div className="row">
       <div className="col">

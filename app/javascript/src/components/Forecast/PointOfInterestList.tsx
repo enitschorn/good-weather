@@ -23,13 +23,13 @@ const FORECASTS = gql`
   }
 `;
 
+interface Date {
+  date: string
+}
+
 interface PointOfInterestListProps {
   dates: Date[],
   setPois: any,
-}
-
-interface Date {
-  date: string
 }
 
 export const PointOfInterestList: FC<PointOfInterestListProps> = ({ dates, setPois }) => {

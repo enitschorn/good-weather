@@ -1,21 +1,9 @@
 import React, { useState, FC } from 'react';
 import {
-  Tooltip, Popover, PopoverBody, PopoverHeader,
+  Popover, PopoverBody, PopoverHeader,
 } from 'reactstrap';
 import GoogleMapReact from 'google-map-react';
 import { ForecastIcon } from './ForecastIcon';
-
-interface PoiMarkerProps {
-  id: string,
-  name: string,
-  lat: string,
-  lng: string,
-}
-
-interface ForecastMapProps {
-  mapKey: string,
-  forecasts: Forecasts[],
-}
 
 interface Forecasts {
   location: {
@@ -31,6 +19,10 @@ interface Forecasts {
   temperatureHigh: string,
   icon: string,
 }
+interface ForecastMapProps {
+  mapKey: string,
+  forecasts: Forecasts[],
+}
 interface LocationMarkerProps {
   id: string,
   name: string,
@@ -41,11 +33,8 @@ interface LocationMarkerProps {
   temperatureHigh: string,
 }
 
-interface Date {
-  date: string,
-}
-
 const LocationMarker: FC<LocationMarkerProps> = ({
+  // eslint-disable-next-line no-unused-vars
   id, name, summary, icon, temperatureHigh, lat, lng,
 }) => {
   const [popoverOpen, setPopoverOpen] = useState(false);

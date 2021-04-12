@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+
 interface FeatureImageUrls {
   url: string,
 }
@@ -42,6 +43,6 @@ export const PointOfInterestListItem: FC<PointOfInterestListItemProps> = ({
       {' '}
       {longitude}
     </p>
-    <p>{featureImageUrls.map((image) => <img key={image.url} src={image.url} width="250px" />)}</p>
+    <p>{featureImageUrls.map((image) => <img alt={image.url} key={image.url} src={image.url} width="250px" />)}</p>
   </div>
 );

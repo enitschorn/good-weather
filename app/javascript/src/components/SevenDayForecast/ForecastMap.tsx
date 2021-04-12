@@ -5,7 +5,7 @@ interface ForecastMapProps {
   googleApiKey: string;
   latitude: Float32Array;
   longitude: Float32Array;
-  children: NodeList;
+  children: React.ReactNode;
 }
 
 const ForecastMap: FC<ForecastMapProps> = ({

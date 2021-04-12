@@ -1,6 +1,5 @@
 import React, { FC, useState, useEffect } from 'react';
 import { ApolloProvider } from '@apollo/client';
-
 import { PointOfInterestList } from './PointOfInterestList';
 import { ForecastMap } from './ForecastMap';
 import { ForecastSelector } from './ForecastSelector';
@@ -17,6 +16,7 @@ interface ForecastProps {
 
 export const Forecast: FC<ForecastProps> = ({ options: { googleApiKey } }) => {
   const [dates, setDates] = useState([]);
+  // eslint-disable-next-line no-unused-vars
   const [pois, setPois] = useState([]);
   const [mapOnly, setMapOnly] = useState(true);
   const [forecasts, setForecasts] = useState([]);

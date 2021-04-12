@@ -20,12 +20,12 @@ const FORECASTS = gql`
   }
 `;
 
-interface ForecastListProps {
-  dates: Date[],
-}
-
 interface Date {
   date: string
+}
+
+interface ForecastListProps {
+  dates: Date[],
 }
 
 export const ForecastList: FC<ForecastListProps> = ({ dates }) => {
